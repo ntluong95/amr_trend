@@ -148,35 +148,35 @@ importance_df <- import(here("data", "Fig S1 and S5.csv"))
 
 
 # Figure S3 ------------------------------------------------------------------------------------------------
-best_model_coeffs <- import(here("data", "Fig S3-change-coeffs.rds"))
-best_model_coeffs_point <- import(here("data", "Fig S3-change-coeffs-point.rds"))
-best_model_coeffs_tile <- import(here("data", "Fig S3-change-coeffs-tile.rds"))
+best_model_coeffs <- import(here("data", "Fig S3-change-coeffs.rds"), trust = TRUE)
+best_model_coeffs_point <- import(here("data", "Fig S3-change-coeffs-point.rds"), trust = TRUE)
+best_model_coeffs_tile <- import(here("data", "Fig S3-change-coeffs-tile.rds"), trust = TRUE)
 
 
-best_model_coeffs_point_binomial <- import(here("data", "Fig S3-bin-coeffs-point.rds"))
-best_model_coeffs_tile_binomial <- import(here("data", "Fig S3-bin-coeffs-tile.rds"))
+best_model_coeffs_point_binomial <- import(here("data", "Fig S3-bin-coeffs-point.rds"), trust = TRUE)
+best_model_coeffs_tile_binomial <- import(here("data", "Fig S3-bin-coeffs-tile.rds"), trust = TRUE)
 
 
 # Figure S4 ------------------------------------------------------------------------------------------------
 
-rank_df_top5_supp <- import(here("data", "Fig S4.rds"))
+rank_df_top5_supp <- import(here("data", "Fig S4.rds"), trust = TRUE)
 
 # Figure S6 ------------------------------------------------------------------------------------------------
 # heatmap_df <- import(here("data", "Fig S6.csv"))
 
-heatmap_df_supp_s6 <- import(here("data", "Fig S6_supp.rds"))
-heatmap_df_tile_s6 <- import(here("data", "Fig S6_tile_supp.rds"))
-heatmap_df_point_s6 <- import(here("data", "Fig S6_point_supp.rds"))
+heatmap_df_supp_s6 <- import(here("data", "Fig S6_supp.rds"), trust = TRUE)
+heatmap_df_tile_s6 <- import(here("data", "Fig S6_tile_supp.rds"), trust = TRUE)
+heatmap_df_point_s6 <- import(here("data", "Fig S6_point_supp.rds"), trust = TRUE)
 
 # Figure S2 ------------------------------------------------------------------------------------------------
-heatmap_df_main <- import(here("data", "Fig S2_main.rds"))
-heatmap_df_main_point <- import(here("data", "Fig S2_point_main.rds"))
-heatmap_df_main_tile <- import(here("data", "Fig S2_tile_main.rds"))
+heatmap_df_main <- import(here("data", "Fig S2_main.rds"), trust = TRUE)
+heatmap_df_main_point <- import(here("data", "Fig S2_point_main.rds"), trust = TRUE)
+heatmap_df_main_tile <- import(here("data", "Fig S2_tile_main.rds"), trust = TRUE)
 
 
-heatmap_df_bin <- import(here("data", "Fig S2_bin.rds"))
-heatmap_df_bin_point <- import(here("data", "Fig S2_point_bin.rds"))
-heatmap_df_bin_tile <- import(here("data", "Fig S2_tile_bin.rds"))
+heatmap_df_bin <- import(here("data", "Fig S2_bin.rds"), trust = TRUE)
+heatmap_df_bin_point <- import(here("data", "Fig S2_point_bin.rds"), trust = TRUE)
+heatmap_df_bin_tile <- import(here("data", "Fig S2_tile_bin.rds"), trust = TRUE)
 
 # S22 and S23 Table ----------------------------------------------------------------------------------------
 
@@ -208,35 +208,35 @@ s24_data <- import(here("data", "S24 Table.xlsx"))
 
 # Main figure 2 --------------------------------------------------------------------------------------------
 #
-dpsir <- import(here("data", "new", "Main_fig2_cont.rds"))
-dat_text <- import(here("data", "new", "Main_fig2_cont_text.rds"))
-mr2_pred <- import(here("data", "new", "Main_fig2_pred.rds"))
-dpsir_bin_plot <- import(here("data", "new", "Main_fig2_bin.rds"))
-dat_text2 <- import(here("data", "new", "Main_fig2_bin_text.rds"))
-letter_df <- import(here("data", "new", "Main_fig2_letter.df.rds"))
+dpsir <- import(here("data", "new", "Main_fig2_cont.rds"), trust = TRUE)
+dat_text <- import(here("data", "new", "Main_fig2_cont_text.rds"), trust = TRUE)
+mr2_pred <- import(here("data", "new", "Main_fig2_pred.rds"), trust = TRUE)
+dpsir_bin_plot <- import(here("data", "new", "Main_fig2_bin.rds"), trust = TRUE)
+dat_text2 <- import(here("data", "new", "Main_fig2_bin_text.rds"), trust = TRUE)
+letter_df <- import(here("data", "new", "Main_fig2_letter.df.rds"), trust = TRUE)
 
 
 # Main figure 3 --------------------------------------------------------------------------------------------
 
-newdataDPSI <- import(here("data", "new", "Main_fig3.rds"))
-DRIVERS <- import(here("data", "new", "Main_fig3_drivers.rds"))
-all_wide <- import(here("data", "new", "Main_fig3_allwide.rds"))
+newdataDPSI <- import(here("data", "new", "Main_fig3.rds"), trust = TRUE)
+DRIVERS <- import(here("data", "new", "Main_fig3_drivers.rds"), trust = TRUE)
+all_wide <- import(here("data", "new", "Main_fig3_allwide.rds"), trust = TRUE)
 
 # Main figure 4 --------------------------------------------------------------------------------------------
-rank_df_main <- import(here("data", "new", "Main_fig4.rds"))
+rank_df_main <- import(here("data", "new", "Main_fig4.rds"), trust = TRUE)
 
 # Main figure 5 --------------------------------------------------------------------------------------------
-aniRmmmmALLig.df <- import(here("data", "new", "Main_fig5.rds"))
+aniRmmmmALLig.df <- import(here("data", "new", "Main_fig5.rds"), trust = TRUE)
 
 # Main figure 6 --------------------------------------------------------------------------------------------
 #
-data_viz <- import(here("data", "new", "Main_fig6_point.rds")) %>% 
+data_viz <- import(here("data", "new", "Main_fig6_point.rds"), trust = TRUE) %>% 
   mutate(syndrome = forcats::fct_recode(syndrome,
                                         "Virtuous cycle" = "A",
                                         "Meeting challenge" = "B",
                                         "Relaxed response" = "C",
                                         "Vicious cycle" = "D"))
-annotation <- import(here("data", "new", "Main_fig6_bar.rds")) %>% 
+annotation <- import(here("data", "new", "Main_fig6_bar.rds"), trust = TRUE) %>% 
   mutate(syndrome = forcats::fct_recode(syndrome,
                                         "Virtuous cycle" = "A",
                                         "Meeting challenge" = "B",
@@ -247,7 +247,7 @@ annotation <- import(here("data", "new", "Main_fig6_bar.rds")) %>%
 
 # Choropleth plots  ----------------------------------------------------------------------------------------
 
-dpsir_shiny <- import(here("data", "new", "data_shiny.rds")) %>% 
+dpsir_shiny <- import(here("data", "new", "data_shiny.rds"), trust = TRUE) %>% 
   mutate(level = case_when(
     level == "level 1" ~ "Tier 1",
     level == "level 2" ~ "Tier 2",
@@ -264,7 +264,7 @@ dpsir_shiny <- import(here("data", "new", "data_shiny.rds")) %>%
 highlight_countries <- c("Norway", "Sweden", "Denmark", "USA", "Netherlands", "UK",
                          "Dominican Republic", "Lebanon", "Ecuador", "Ukraine", "Egypt", "Bangladesh")
 
-governance_begin_after <- import(here("data", "new", "Main_fig6_point.rds")) %>% 
+governance_begin_after <- import(here("data", "new", "Main_fig6_point.rds"), trust = TRUE) %>% 
   filter(GroupR == "TotalResponse") %>%
   select(name, ISO3, init_resp, end_resp, income) %>%
   distinct() %>%
