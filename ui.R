@@ -384,11 +384,11 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S5 Table -"), span("Model Formulas for Association between Action and Indicator Change and Sign of Change"), align = "center")
+          column(12, strong("S5 Table -"), span("Model Formulas for Association between Action and Indicator Change and Categorical Trend"), align = "center")
         ),
         fluidRow(
           column(12, 
-                 p("Formulas for generalized linear mixed models to investigate the association between change of indicators in 16 years and action. Two types of models including the first type referring Change as the degree of change in indicators as response variable. The second type of model included Action as a response variable and Sign of Change as an explanatory variable to investigate the action difference between the countries with positive vs negative change. Results shown in Figure 2 for tier 1 indicators.",
+                 p("Formulas for generalized linear mixed models to investigate the association between linear trend of indicators in 16 years and action. First type of model included linear trend of indicators as response variable. The second type of model included Action as a response variable and categorical trend as an explanatory variable to investigate the action difference between the countries with positive vs negative change. Results shown in Figure 2 for tier 1 indicators.",
                    style = "margin-bottom: 20px; font-style: italic;"))),
         br(),
         fluidRow(
