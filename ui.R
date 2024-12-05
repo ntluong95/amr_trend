@@ -145,7 +145,7 @@ ui <- page_navbar(
         sidebarPanel(
           fluidRow(
             # Plain static text description
-            tags$p(HTML("<strong>Figure 3. De-escalation ratios of DPSE indicators for Drivers, Use, Resistance, and DRI.</strong> <em>De-escalating ratio is defined as the proportion of available lower-level indicators within a category that have witnessed a reduction from 2000 to 2016. Uncertainty bands indicate standard errors.</em>"))
+            tags$p(HTML("<strong>Figure 3. De-escalation ratios of DPSE indicators for Drivers, Use, Resistance, and DRI.</strong> <em>De-escalating ratio is defined as the proportion of available lower-level indicators within a category that have witnessed a reduction from 2000 to 2016. Weight refers to the proportion of variables avaiable within a category. Uncertainty bands indicate standard errors.</em>"))
           )),
         mainPanel(
           # plotOutput("adaptive_plot", width = "100%", height = "800px"),
