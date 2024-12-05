@@ -91,14 +91,18 @@ ui <- page_navbar(
                       tags$li(tags$strong("Annex 2. Methodology")),
                       tags$ul(
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'dpsea-description')", "DPSEA indicators description")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S1 Table - Indicator selection for Driver, Use, Resistance, and DRI categories")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'country-selection')", "S1 Table - List of countries included in the study")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')", "S3 Table – Governance Syndrome questions")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'action-index')", "S4 Table – Questions used for calculating the action index")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'model-formulas')", "S5 Table – Model Formulas for Association between Action and Indicator change and sign of change")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'de-escalation-plots')", "S6 Table. De-escalation plot formulas for univariate models")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'global-models-data')", "S7 Table - Global Models Data Subset Formulas for The Model Selection")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'global-models-formulas')", "S8 Table - Global Model Formulas for The Model Selection"))
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S1 Table - Indicator selection for Driver categories")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S2 Table - Indicator selection for Use and Resistance categories")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S3 Table - Indicator selection for DRI (exposure) categories")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S4 Table - Ecological variables used as covariates")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S5 Table - Indicator selection for Driver, Use, Resistance, and DRI categories")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'country-selection')", "S5 Table - List of countries included in the study")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')", "S6 Table – Governance Syndrome questions")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'action-index')", "S7 Table – Questions used for calculating the action index")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'model-formulas')", "S8 Table – Model Formulas for Association between Action and Indicator change and sign of change")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'de-escalation-plots')", "S9 Table. De-escalation plot formulas for univariate models")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'global-models-data')", "S10 Table - Global Models Data Subset Formulas for The Model Selection")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'global-models-formulas')", "S11 Table - Global Model Formulas for The Model Selection"))
                       ),
                       
                       
@@ -293,7 +297,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S1 Table -"), span("List of countries included in the study"), align = "center")
+          column(12, strong("S5 Table -"), span("List of countries included in the study"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -310,7 +314,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S1 Table -"), span("Indicator selection for Driver, Use, Resistance, and DRI categories"), align = "center")
+          column(12, strong("S1 Table -"), span("Indicator selection for Driver categories"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -322,12 +326,43 @@ ui <- page_navbar(
         ),
         tags$h4("DRIVERS: FACTORS INFLUENCING ANTIBIOTIC USE"),
         DTOutput("drivers_table"),
+
+        br(),
+        fluidRow(
+          column(12, strong("S2 Table -"), span("Indicator selection for Use and Resistance categories"), align = "center")
+        ),
+        fluidRow(
+          column(12, 
+                 p("Use or resistance data were available for 73 countries with ABU (Antibiotic Usage), ABR (Antibiotic Resistance) respectively for 65 and 32 countries. Data for governmental responses to ABR were collected from a recent survey of stated levels of national government action to limit antimicrobial resistance. Data is standardised SD=1 by denoting the ratio of standard deviation to mean. Use and resistance indicators included 2 tiers.",
+                   style = "margin-bottom: 20px; font-style: italic;"))),
+        br(),
         tags$h4("USE: PRESSURES FOR RESISTANCE TO SPREAD"),
         DTOutput("use_table"),
+        br(),
         tags$h4("RESISTANCE: CURRENT STATE OF ANTIBIOTIC RESISTANCE"),
         DTOutput("resistance_table"),
+
+        br(),
+        fluidRow(
+          column(12, strong("S3 Table -"), span("Indicator selection for DRI (exposure) categories"), align = "center")
+        ),
+        fluidRow(
+          column(12, 
+                 p("DRI (Drug-Resistance Index, referred as exposure) data available for 25 countries. For the DRI calculation check the supplementary methods. Data is standardised SD=1 by denoting the ratio of standard deviation to mean.",
+                   style = "margin-bottom: 20px; font-style: italic;"))),
+
         tags$h4("DRUG RESISTANCE INDEX (DRI): PATHOGEN-ANTIBIOTIC COMBINATIONS"),
         DTOutput("dri_table"),
+
+        br(),
+        fluidRow(
+          column(12, strong("S4 Table -"), span("Ecological variables used as covariates"), align = "center")
+        ),
+        fluidRow(
+          column(12, 
+                 p("Ecological variables are the are non-related variables to DPSE indicators and referred as covariates in the analyses. Covariates are grouped according to their context.",
+                   style = "margin-bottom: 20px; font-style: italic;"))),
+
         tags$h4("ECOLOGICAL VARIABLES"),
         DTOutput("ecological_variables_table"),
         br(),
@@ -346,7 +381,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S3 Table -"), span("Governance Syndrome questions"), align = "center")
+          column(12, strong("S6 Table -"), span("Governance Syndrome questions"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -365,7 +400,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S4 Table -"), span("Questions used for calculating the action index"), align = "center")
+          column(12, strong("S7 Table -"), span("Questions used for calculating the action index"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -388,7 +423,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S5 Table -"), span("Model Formulas for Association between Action and Indicator Change and Categorical Trend"), align = "center")
+          column(12, strong("S8 Table -"), span("Model Formulas for Association between Action and Indicator Change and Categorical Trend"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -406,7 +441,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S6 Table -"), span("De-escalation plot formulas for univariate models"), align = "center")
+          column(12, strong("S9 Table -"), span("De-escalation plot formulas for univariate models"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -423,7 +458,7 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S7 Table -"), span("Global Models Data Subset Formulas for The Model Selection"), align = "center")
+          column(12, strong("S10 Table -"), span("Global Models Data Subset Formulas for The Model Selection"), align = "center")
         ),
         fluidRow(
           column(12, 
@@ -436,7 +471,7 @@ ui <- page_navbar(
         br(),
         br(),
         fluidRow(
-          column(12, strong("S8 Table -"), span("Model selection global model formulas"), align = "center")
+          column(12, strong("S11 Table -"), span("Model selection global model formulas"), align = "center")
         ),
         fluidRow(
           column(12, 
