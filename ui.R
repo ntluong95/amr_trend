@@ -130,7 +130,7 @@ ui <- page_navbar(
                         selected = c("Linear Trend", "Categorical Trend"), multiple = TRUE)),
           fluidRow(
             # Plain static text description
-            tags$p(HTML("<strong>Figure 2. Association between stated action and linear trend (indicator change A-D), and sign of change (categorical trend E-H).</strong> <em>Indicator p-values are from linear mixed models with country income group as random effect. For detailed indicators, please see S5 Table. Blue represents drivers of antibiotics resistance, purple represents antibiotics use, orange represents resistance, and red represents DRI.</em>"))
+            tags$p(HTML("<strong>Figure 2. Association between stated action and linear trend (indicator change A-D), and sign of change (categorical trend E-H).</strong> <em>Indicator p-values are from linear mixed models with country income group as random effect. For detailed indicators, please see S8 Table. Blue represents drivers of antibiotics resistance, purple represents antibiotics use, orange represents resistance, and red represents DRI.</em>"))
           )),
         mainPanel(
           # plotOutput("adaptive_plot", width = "100%", height = "800px"),
@@ -166,7 +166,7 @@ ui <- page_navbar(
                         selected = "Linear Trend", multiple = TRUE)),
           fluidRow(
             # Plain static text description
-            tags$p(HTML("<strong>Figure 4. Most important variables in model selection.</strong> <em>The rank of the five most important variables (rows) is shown using color coding. Each column represents a unique model selection procedure on the linear trend (change, 17 procedures) or the categorical trend (binomial, 16 procedures). Model names refers to the subset of the dataset with certain DPSE indicators including D (Driver), P (Pressure), S (State), E (Exposure). noDr indicates exclusion of health system variables as explanatory variables. aX refers to analysis of DPSE for country subsets with X variable available. See S7-S8 Tables for details on each model selection procedure..</em>"))
+            tags$p(HTML("<strong>Figure 4. Most important variables in model selection.</strong> <em>The rank of the five most important variables (rows) is shown using color coding. Each column represents a unique model selection procedure on the linear trend (change, 17 procedures) or the categorical trend (binomial, 16 procedures). Model names refers to the subset of the dataset with certain DPSE indicators including D (Driver), P (Pressure), S (State), E (Exposure). noDr indicates exclusion of health system variables as explanatory variables. aX refers to analysis of DPSE for country subsets with X variable available. See S10-S11 Tables for details on each model selection procedure.</em>"))
           )),
         mainPanel(
           # plotOutput("adaptive_plot", width = "100%", height = "800px"),
@@ -214,7 +214,7 @@ ui <- page_navbar(
                         selected = c("DRIVERS", "USE", "RESISTANCE", "DRI"), multiple = TRUE)),
           fluidRow(
             # Plain static text description
-            tags$p(HTML("<strong>Figure 6. Classification of country ABR governance syndrome.</strong> <em>(A) categorize country trajectory based on trend in ABR indicators and governmental action. Countries in vicious cycle are displayed with name ISO3 code (see S1 Table). (B) Comparison of country governance syndrome according to DPSE indicators and income level..</em>"))
+            tags$p(HTML("<strong>Figure 6. Classification of country ABR governance syndrome.</strong> <em>(A) categorize country trajectory based on trend in ABR indicators and governmental action. Countries in vicious cycle are displayed with name ISO3 code (see S5 Table). (B) Comparison of country governance syndrome according to DPSE indicators and income level..</em>"))
           )),
         mainPanel(
           # plotOutput("adaptive_plot", width = "100%", height = "800px"),
