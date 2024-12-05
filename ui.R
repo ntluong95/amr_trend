@@ -317,15 +317,15 @@ ui <- page_navbar(
           DTOutput("indicators_table")
         ),
         tags$h4("DRIVERS: FACTORS INFLUENCING ANTIBIOTIC USE"),
-        dataTableOutput("drivers_table"),
+        DTOutput("drivers_table"),
         tags$h4("USE: PRESSURES FOR RESISTANCE TO SPREAD"),
-        dataTableOutput("use_table"),
+        DTOutput("use_table"),
         tags$h4("RESISTANCE: CURRENT STATE OF ANTIBIOTIC RESISTANCE"),
-        dataTableOutput("resistance_table"),
+        DTOutput("resistance_table"),
         tags$h4("DRUG RESISTANCE INDEX (DRI): PATHOGEN-ANTIBIOTIC COMBINATIONS"),
-        dataTableOutput("dri_table"),
+        DTOutput("dri_table"),
         tags$h4("ECOLOGICAL VARIABLES"),
-        dataTableOutput("ecological_variables_table"),
+        DTOutput("ecological_variables_table"),
         br(),
         fluidRow(
           column(12, strong("REFERENCE"))
