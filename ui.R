@@ -91,8 +91,8 @@ ui <- page_navbar(
                       tags$li(tags$strong("Annex 2. Methodology")),
                       tags$ul(
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'dpsea-description')", "DPSEA indicators description")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S1 Table - Indicator selection for Driver, Use, Resistance, and DRI categories")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'country-selection')", "S1 Table - List of countries included in the study")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S2 Table - Indicator selection for Driver, Use, Resistance, and DRI categories")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')", "S3 Table – Governance Syndrome questions")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'action-index')", "S4 Table – Questions used for calculating the action index")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'model-formulas')", "S5 Table – Model Formulas for Association between Action and Indicator change and sign of change")),
@@ -105,8 +105,8 @@ ui <- page_navbar(
                       
                       tags$li(tags$strong("Annex 3. Supporting results")),
                       tags$ul(
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'choropleth-plots')", "Figure S1. Changes of ABR DPSE- indicators over time (2000-2016) in 73 countries")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'governance-changes')", "Figure S2. Changes of governance action between 2016 and 2023")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'choropleth-plots')", "Figure S0a. Changes of ABR DPSE- indicators over time (2000-2016) in 73 countries")),
+                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'governance-changes')", "Figure S0b. Changes of governance action between 2016 and 2023")),
                       )
                     )
     ))
@@ -310,8 +310,12 @@ ui <- page_navbar(
       fluidPage(
         br(),
         fluidRow(
-          column(12, strong("S2 Table -"), span("Indicator selection for Driver, Use, Resistance, and DRI categories"), align = "center")
+          column(12, strong("S1 Table -"), span("Indicator selection for Driver, Use, Resistance, and DRI categories"), align = "center")
         ),
+        fluidRow(
+          column(12, 
+                 p("Driver (as the first DPSE: Driver, Pressure, State, and Exposure indicator) data was available for 148 countries. However, countries which had driver data only included if they had one of the other indicator categories (Use, Resistance, and DRI), hence only 73 countries included in drivers (data is standardised SD=1 by denoting the ratio of standard deviation to mean). Driver data included 3 tiers. Average of tier 3 indicators are taken from different data sources.",
+                   style = "margin-bottom: 20px; font-style: italic;"))),
         br(),
         fluidRow(
           DTOutput("indicators_table")
@@ -534,7 +538,7 @@ ui <- page_navbar(
           fluidRow(pickerInput("trend", "Select governance trend:", choices = c("Increase", "Decrease"), selected = c("Increase", "Decrease"), multiple = TRUE)),
           # Note added here
           tags$hr(),  # Adds a horizontal line for visual separation
-          HTML("<b> Figure S2. </b> Changes of governance action between 2016 and 2023. <em> Governance action scrore reported in Tracking AMR Country Self-Assessment Survey (TrACSS) <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. Notable exception where goverance score <b style='color:#C33C2E'>decreased</b>, is the Netherlands. </em>")
+          HTML("<b> Figure S0b. </b> Changes of governance action between 2016 and 2023. <em> Governance action scrore reported in Tracking AMR Country Self-Assessment Survey (TrACSS) <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. Notable exception where goverance score <b style='color:#C33C2E'>decreased</b>, is the Netherlands. </em>")
           
           
         ),
