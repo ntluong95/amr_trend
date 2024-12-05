@@ -1,0 +1,12 @@
+name: amr_trend
+title: amr_trend
+username: gedb
+account: gedb
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12520272
+bundleId: 9197451
+url: https://gedb.shinyapps.io/amr_trend/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

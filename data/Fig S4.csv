@@ -1,0 +1,267 @@
+variable_names,mod_names,mod_inc,mod_type,rank
+income,DPSEA,HIC,CHANGE,
+income,DPSEA.noDr,HIC,CHANGE,
+Sanitation,DPSEA.noDr,HIC,CHANGE,
+Infection,DPSEA.noDr,HIC,CHANGE,
+Workforce,DPSEA.noDr,HIC,CHANGE,
+Vaccination,DPSEA.noDr,HIC,CHANGE,
+income,aP.noDr,HIC,CHANGE,
+Sanitation,aP.noDr,HIC,CHANGE,
+Infection,aP.noDr,HIC,CHANGE,
+Workforce,aP.noDr,HIC,CHANGE,
+Vaccination,aP.noDr,HIC,CHANGE,
+income,aS.noDr,HIC,CHANGE,
+Sanitation,aS.noDr,HIC,CHANGE,
+Infection,aS.noDr,HIC,CHANGE,
+Workforce,aS.noDr,HIC,CHANGE,
+Vaccination,aS.noDr,HIC,CHANGE,
+income,aE.noDr,HIC,CHANGE,
+Sanitation,aE.noDr,HIC,CHANGE,
+Infection,aE.noDr,HIC,CHANGE,
+Workforce,aE.noDr,HIC,CHANGE,
+Vaccination,aE.noDr,HIC,CHANGE,
+income,aP,HIC,CHANGE,
+income,aS,HIC,CHANGE,
+income,aE,HIC,CHANGE,
+income,Dr,HIC,CHANGE,
+Sanitation,Dr,HIC,CHANGE,
+Infection,Dr,HIC,CHANGE,
+Workforce,Dr,HIC,CHANGE,
+Vaccination,Dr,HIC,CHANGE,
+DPSE,Dr,HIC,CHANGE,
+income,P,HIC,CHANGE,
+DPSE,P,HIC,CHANGE,
+income,S,HIC,CHANGE,
+DPSE,S,HIC,CHANGE,
+income,E,HIC,CHANGE,
+DPSE,E,HIC,CHANGE,
+income,DPS,HIC,CHANGE,
+income,PSE,HIC,CHANGE,
+income,DP,HIC,CHANGE,
+income,PS,HIC,CHANGE,
+income,SE,HIC,CHANGE,
+income,DPSEA,LMIC,CHANGE,
+income,DPSEA.noDr,LMIC,CHANGE,
+Sanitation,DPSEA.noDr,LMIC,CHANGE,
+Infection,DPSEA.noDr,LMIC,CHANGE,
+Workforce,DPSEA.noDr,LMIC,CHANGE,
+Vaccination,DPSEA.noDr,LMIC,CHANGE,
+income,aP.noDr,LMIC,CHANGE,
+Sanitation,aP.noDr,LMIC,CHANGE,
+Infection,aP.noDr,LMIC,CHANGE,
+Workforce,aP.noDr,LMIC,CHANGE,
+Vaccination,aP.noDr,LMIC,CHANGE,
+income,aS.noDr,LMIC,CHANGE,
+Sanitation,aS.noDr,LMIC,CHANGE,
+Infection,aS.noDr,LMIC,CHANGE,
+Workforce,aS.noDr,LMIC,CHANGE,
+Vaccination,aS.noDr,LMIC,CHANGE,
+income,aE.noDr,LMIC,CHANGE,
+Sanitation,aE.noDr,LMIC,CHANGE,
+Infection,aE.noDr,LMIC,CHANGE,
+Workforce,aE.noDr,LMIC,CHANGE,
+Vaccination,aE.noDr,LMIC,CHANGE,
+income,aP,LMIC,CHANGE,
+income,aS,LMIC,CHANGE,
+income,aE,LMIC,CHANGE,
+income,Dr,LMIC,CHANGE,
+Sanitation,Dr,LMIC,CHANGE,
+Infection,Dr,LMIC,CHANGE,
+Workforce,Dr,LMIC,CHANGE,
+Vaccination,Dr,LMIC,CHANGE,
+DPSE,Dr,LMIC,CHANGE,
+income,P,LMIC,CHANGE,
+DPSE,P,LMIC,CHANGE,
+income,S,LMIC,CHANGE,
+DPSE,S,LMIC,CHANGE,
+income,DPS,LMIC,CHANGE,
+income,PSE,LMIC,CHANGE,
+income,DP,LMIC,CHANGE,
+income,PS,LMIC,CHANGE,
+income,SE,LMIC,CHANGE,
+DPSE,SE,LMIC,CHANGE,
+Action,SE,LMIC,CHANGE,
+General,SE,LMIC,CHANGE,
+Monitoring and Surveillance,SE,LMIC,CHANGE,
+Awareness and Education,SE,LMIC,CHANGE,
+GDP,SE,LMIC,CHANGE,
+Population Density,SE,LMIC,CHANGE,
+Gini,SE,LMIC,CHANGE,
+Animal Production,SE,LMIC,CHANGE,
+Mean Temperature,SE,LMIC,CHANGE,
+Baseline,SE,LMIC,CHANGE,
+Sanitation,SE,LMIC,CHANGE,
+Infection,SE,LMIC,CHANGE,
+Workforce,SE,LMIC,CHANGE,
+Vaccination,SE,LMIC,CHANGE,
+DPSE,E,LMIC,CHANGE,
+income,E,LMIC,CHANGE,
+Action,E,LMIC,CHANGE,
+General,E,LMIC,CHANGE,
+Monitoring and Surveillance,E,LMIC,CHANGE,
+Awareness and Education,E,LMIC,CHANGE,
+GDP,E,LMIC,CHANGE,
+Population Density,E,LMIC,CHANGE,
+Gini,E,LMIC,CHANGE,
+Animal Production,E,LMIC,CHANGE,
+Mean Temperature,E,LMIC,CHANGE,
+Baseline,E,LMIC,CHANGE,
+Sanitation,E,LMIC,CHANGE,
+Infection,E,LMIC,CHANGE,
+Workforce,E,LMIC,CHANGE,
+Vaccination,E,LMIC,CHANGE,
+DPSE,DPSEA,HIC,CHANGE,1
+Workforce,DPSEA,HIC,CHANGE,2
+Mean Temperature,DPSEA,HIC,CHANGE,3
+Monitoring and Surveillance,DPSEA,HIC,CHANGE,4
+General,DPSEA,HIC,CHANGE,5
+DPSE,DPSEA.noDr,HIC,CHANGE,1
+Monitoring and Surveillance,DPSEA.noDr,HIC,CHANGE,2
+General,DPSEA.noDr,HIC,CHANGE,3
+Action,DPSEA.noDr,HIC,CHANGE,4
+Mean Temperature,DPSEA.noDr,HIC,CHANGE,5
+DPSE,aP.noDr,HIC,CHANGE,1
+Monitoring and Surveillance,aP.noDr,HIC,CHANGE,2
+General,aP.noDr,HIC,CHANGE,3
+Action,aP.noDr,HIC,CHANGE,4
+Mean Temperature,aP.noDr,HIC,CHANGE,5
+DPSE,aS.noDr,HIC,CHANGE,1
+General,aS.noDr,HIC,CHANGE,2
+Monitoring and Surveillance,aS.noDr,HIC,CHANGE,3
+Action,aS.noDr,HIC,CHANGE,4
+Baseline,aS.noDr,HIC,CHANGE,5
+DPSE,aE.noDr,HIC,CHANGE,1
+General,aE.noDr,HIC,CHANGE,2
+Monitoring and Surveillance,aE.noDr,HIC,CHANGE,3
+Action,aE.noDr,HIC,CHANGE,4
+Baseline,aE.noDr,HIC,CHANGE,5
+DPSE,aP,HIC,CHANGE,1
+Monitoring and Surveillance,aP,HIC,CHANGE,2
+Workforce,aP,HIC,CHANGE,3
+Infection,aP,HIC,CHANGE,4
+Mean Temperature,aP,HIC,CHANGE,5
+DPSE,aS,HIC,CHANGE,1
+Workforce,aS,HIC,CHANGE,2
+Infection,aS,HIC,CHANGE,3
+Monitoring and Surveillance,aS,HIC,CHANGE,4
+Sanitation,aS,HIC,CHANGE,5
+DPSE,aE,HIC,CHANGE,1
+Workforce,aE,HIC,CHANGE,2
+Infection,aE,HIC,CHANGE,3
+Monitoring and Surveillance,aE,HIC,CHANGE,4
+Sanitation,aE,HIC,CHANGE,5
+Baseline,Dr,HIC,CHANGE,1
+Action,Dr,HIC,CHANGE,2
+Monitoring and Surveillance,Dr,HIC,CHANGE,3
+Awareness and Education,Dr,HIC,CHANGE,4
+Monitoring and Surveillance,P,HIC,CHANGE,1
+Infection,P,HIC,CHANGE,2
+Mean Temperature,P,HIC,CHANGE,3
+Workforce,P,HIC,CHANGE,4
+Action,P,HIC,CHANGE,5
+Baseline,S,HIC,CHANGE,1
+Infection,S,HIC,CHANGE,2
+Mean Temperature,S,HIC,CHANGE,3
+Workforce,S,HIC,CHANGE,4
+Monitoring and Surveillance,S,HIC,CHANGE,5
+Mean Temperature,E,HIC,CHANGE,1
+Action,E,HIC,CHANGE,2
+Workforce,E,HIC,CHANGE,3
+General,E,HIC,CHANGE,4
+Baseline,E,HIC,CHANGE,5
+DPSE,DPS,HIC,CHANGE,1
+Workforce,DPS,HIC,CHANGE,2
+Monitoring and Surveillance,DPS,HIC,CHANGE,3
+Infection,DPS,HIC,CHANGE,4
+Action,DPS,HIC,CHANGE,5
+Mean Temperature,PSE,HIC,CHANGE,1
+Monitoring and Surveillance,PSE,HIC,CHANGE,2
+Workforce,PSE,HIC,CHANGE,3
+Infection,PSE,HIC,CHANGE,4
+General,PSE,HIC,CHANGE,5
+DPSE,DP,HIC,CHANGE,1
+Monitoring and Surveillance,DP,HIC,CHANGE,2
+Mean Temperature,DP,HIC,CHANGE,3
+Workforce,DP,HIC,CHANGE,4
+Infection,DP,HIC,CHANGE,5
+Mean Temperature,PS,HIC,CHANGE,1
+Monitoring and Surveillance,PS,HIC,CHANGE,2
+Infection,PS,HIC,CHANGE,3
+DPSE,PS,HIC,CHANGE,4
+Workforce,PS,HIC,CHANGE,5
+Workforce,SE,HIC,CHANGE,1
+Infection,SE,HIC,CHANGE,2
+Baseline,SE,HIC,CHANGE,3
+DPSE,SE,HIC,CHANGE,4
+Mean Temperature,SE,HIC,CHANGE,5
+DPSE,DPSEA,LMIC,CHANGE,1
+Baseline,DPSEA,LMIC,CHANGE,2
+Workforce,DPSEA,LMIC,CHANGE,3
+Sanitation,DPSEA,LMIC,CHANGE,4
+Infection,DPSEA,LMIC,CHANGE,5
+DPSE,DPSEA.noDr,LMIC,CHANGE,1
+Baseline,DPSEA.noDr,LMIC,CHANGE,2
+Monitoring and Surveillance,DPSEA.noDr,LMIC,CHANGE,3
+Action,DPSEA.noDr,LMIC,CHANGE,4
+General,DPSEA.noDr,LMIC,CHANGE,5
+DPSE,aP.noDr,LMIC,CHANGE,1
+Baseline,aP.noDr,LMIC,CHANGE,2
+DPSE,aS.noDr,LMIC,CHANGE,1
+Baseline,aS.noDr,LMIC,CHANGE,2
+Awareness and Education,aS.noDr,LMIC,CHANGE,3
+General,aS.noDr,LMIC,CHANGE,4
+DPSE,aE.noDr,LMIC,CHANGE,1
+Baseline,aE.noDr,LMIC,CHANGE,2
+Action,aE.noDr,LMIC,CHANGE,3
+Monitoring and Surveillance,aE.noDr,LMIC,CHANGE,4
+Awareness and Education,aE.noDr,LMIC,CHANGE,5
+DPSE,aP,LMIC,CHANGE,1
+Baseline,aP,LMIC,CHANGE,2
+Workforce,aP,LMIC,CHANGE,3
+Sanitation,aP,LMIC,CHANGE,4
+Action,aP,LMIC,CHANGE,5
+DPSE,aS,LMIC,CHANGE,1
+Baseline,aS,LMIC,CHANGE,2
+Workforce,aS,LMIC,CHANGE,3
+General,aS,LMIC,CHANGE,4
+Action,aS,LMIC,CHANGE,5
+DPSE,aE,LMIC,CHANGE,1
+Baseline,aE,LMIC,CHANGE,2
+Workforce,aE,LMIC,CHANGE,3
+Awareness and Education,aE,LMIC,CHANGE,4
+Animal Production,aE,LMIC,CHANGE,5
+General,Dr,LMIC,CHANGE,1
+Action,Dr,LMIC,CHANGE,2
+Baseline,Dr,LMIC,CHANGE,3
+Awareness and Education,Dr,LMIC,CHANGE,4
+Monitoring and Surveillance,Dr,LMIC,CHANGE,5
+Sanitation,P,LMIC,CHANGE,1
+Awareness and Education,P,LMIC,CHANGE,2
+Action,P,LMIC,CHANGE,3
+General,P,LMIC,CHANGE,4
+Infection,P,LMIC,CHANGE,5
+Workforce,S,LMIC,CHANGE,1
+Vaccination,S,LMIC,CHANGE,2
+Sanitation,S,LMIC,CHANGE,3
+Population Density,S,LMIC,CHANGE,4
+Animal Production,S,LMIC,CHANGE,5
+DPSE,DPS,LMIC,CHANGE,1
+Baseline,DPS,LMIC,CHANGE,2
+Workforce,DPS,LMIC,CHANGE,3
+Action,DPS,LMIC,CHANGE,4
+General,DPS,LMIC,CHANGE,5
+DPSE,PSE,LMIC,CHANGE,1
+Baseline,PSE,LMIC,CHANGE,2
+Sanitation,PSE,LMIC,CHANGE,3
+Infection,PSE,LMIC,CHANGE,4
+Awareness and Education,PSE,LMIC,CHANGE,5
+DPSE,DP,LMIC,CHANGE,1
+Baseline,DP,LMIC,CHANGE,2
+Workforce,DP,LMIC,CHANGE,3
+Infection,DP,LMIC,CHANGE,4
+Sanitation,DP,LMIC,CHANGE,5
+Baseline,PS,LMIC,CHANGE,1
+Sanitation,PS,LMIC,CHANGE,2
+Awareness and Education,PS,LMIC,CHANGE,3
+Infection,PS,LMIC,CHANGE,4
+Workforce,PS,LMIC,CHANGE,5
