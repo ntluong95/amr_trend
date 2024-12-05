@@ -58,58 +58,58 @@ server <- function(input, output, session) {
   # Render indicators table:
   
   # Drivers data
-  output$drivers_table <- renderDataTable({
+  output$drivers_table <- DT::renderDT({
     driver_indicators
   })
   
   # Use data
-  output$use_table <- renderDataTable({
+  output$use_table <- DT::renderDT({
     use_indicators
   })
   
   # Resistance data
-  output$resistance_table <- renderDataTable({
+  output$resistance_table <- DT::renderDT({
     resistance_indicators
   })
   
   # DRI data
-  output$dri_table <- renderDataTable({
+  output$dri_table <- DT::renderDT({
     dri_indicators
   })
   
   # Ecological Variables data
-  output$ecological_variables_table <- renderDataTable({
+  output$ecological_variables_table <- DT::renderDT({
     ecology_indicators
   })
 
   
 
 # Table S3 -------------------------------------------------------------------------------------------------
-  output$action_index_table <- renderDataTable({
+  output$action_index_table <- DT::renderDT({
     action_index_table
   })
 
 
 # Table S4 -------------------------------------------------------------------------------------------------
-  output$governance_syndrome <- renderDataTable({
+  output$governance_syndrome <- DT::renderDT({
     governance_syndrome
   })
   
   
 # Table S5 -------------------------------------------------------------------------------------------------
-  output$model_formulas <- renderDataTable({
+  output$model_formulas <- DT::renderDT({
     model_formulas
   })
   
 
 # Table S6 -------------------------------------------------------------------------------------------------
-  output$de_escalation_plots <- renderDataTable({
+  output$de_escalation_plots <- DT::renderDT({
     de_escalation_plots
   })
   
   
 # Table S7 & S8 -------------------------------------------------------------------------------------------------
-  output$global_models_data <- renderDataTable({
+  output$global_models_data <- DT::renderDT({
     global_models_data
   })
   
@@ -123,7 +123,7 @@ server <- function(input, output, session) {
   })
   
   # Render the DataTable
-  # output$global_model_formulas <- renderDataTable({
+  # output$global_model_formulas <- DT::renderDT({
   #   datatable(selectedData(), 
   #             options = list(pageLength = 25), 
   #             escape = FALSE)
