@@ -319,7 +319,7 @@ ui <- page_navbar(
         fluidRow(
           column(12, 
                  p("Driver (as the first DPSE: Driver, Pressure, State, and Exposure indicator) data was available for 148 countries. However, countries which had driver data only included if they had one of the other indicator categories (Use, Resistance, and DRI), hence only 73 countries included in drivers (data is standardised SD=1 by denoting the ratio of standard deviation to mean). Driver data included 3 tiers. Average of tier 3 indicators are taken from different data sources.",
-                   style = "margin-bottom: 20px; font-style: italic;"))),
+                   style = "margin-bottom: 20px; font-style: italic;"), align = "center")),
         br(),
         fluidRow(
           DTOutput("indicators_table")
@@ -334,7 +334,7 @@ ui <- page_navbar(
         fluidRow(
           column(12, 
                  p("Use or resistance data were available for 73 countries with ABU (Antibiotic Usage), ABR (Antibiotic Resistance) respectively for 65 and 32 countries. Data for governmental responses to ABR were collected from a recent survey of stated levels of national government action to limit antimicrobial resistance. Data is standardised SD=1 by denoting the ratio of standard deviation to mean. Use and resistance indicators included 2 tiers.",
-                   style = "margin-bottom: 20px; font-style: italic;"))),
+                   style = "margin-bottom: 20px; font-style: italic;"), align = "center")),
         br(),
         tags$h4("USE: PRESSURES FOR RESISTANCE TO SPREAD"),
         DTOutput("use_table"),
@@ -349,7 +349,7 @@ ui <- page_navbar(
         fluidRow(
           column(12, 
                  p("DRI (Drug-Resistance Index, referred as exposure) data available for 25 countries. For the DRI calculation check the supplementary methods. Data is standardised SD=1 by denoting the ratio of standard deviation to mean.",
-                   style = "margin-bottom: 20px; font-style: italic;"))),
+                   style = "margin-bottom: 20px; font-style: italic;"), align = "center")),
 
         tags$h4("DRUG RESISTANCE INDEX (DRI): PATHOGEN-ANTIBIOTIC COMBINATIONS"),
         DTOutput("dri_table"),
@@ -361,7 +361,7 @@ ui <- page_navbar(
         fluidRow(
           column(12, 
                  p("Ecological variables are the are non-related variables to DPSE indicators and referred as covariates in the analyses. Covariates are grouped according to their context.",
-                   style = "margin-bottom: 20px; font-style: italic;"))),
+                   style = "margin-bottom: 20px; font-style: italic;"), align = "center")),
 
         tags$h4("ECOLOGICAL VARIABLES"),
         DTOutput("ecological_variables_table"),
@@ -549,7 +549,7 @@ ui <- page_navbar(
           
           # Note added here
           tags$hr(),  # Adds a horizontal line for visual separation
-          HTML("<strong>Note:</strong> For variable name reference, please check the <strong>S2 Table</strong>. <em>The maps may take few seconds to load, please be patient!</em>"),
+          HTML("<strong>Note:</strong> For variable name reference, please check the <strong>S1-4 Table</strong>. <em>The maps may take few seconds to load, please be patient!</em>"),
           HTML("<em>For the 2000-2008 and 2008-2016 data, a red color indicates worse status, while blue signifies good status. For the difference between the two periods, green indicates improvement and purple indicates worsening conditions </em>.")
           
         ),
