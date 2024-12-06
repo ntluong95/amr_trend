@@ -95,7 +95,6 @@ ui <- page_navbar(
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S2 Table - Indicator selection for Use and Resistance categories")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S3 Table - Indicator selection for DRI (exposure) categories")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S4 Table - Ecological variables used as covariates")),
-                        tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'indicator-used')", "S5 Table - Indicator selection for Driver, Use, Resistance, and DRI categories")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'country-selection')", "S5 Table - List of countries included in the study")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')", "S6 Table – Governance Syndrome questions")),
                         tags$li(tags$a(href = "#", onclick = "Shiny.setInputValue('navTo', 'action-index')", "S7 Table – Questions used for calculating the action index")),
@@ -243,31 +242,31 @@ ui <- page_navbar(
         
         br(),
         fluidRow(
-          column(12, strong("Drivers – health system"), span("Driving forces behind human antibiotic use is captured by analyzing the trends in time series data for fifteen variables across four tier 2 indicators including infection prevalence (primary driver), sanitation standards, vaccination coverage, and health care workforce. Total data for drivers are compiled for a total of 219 countries from the United Nations (UN), World Bank database and the World Health Organization (WHO). Data availability varies by indicator as detailed in S2 Table. "))
+          column(12, strong("Drivers – health system"), span("Driving forces behind human antibiotic use is captured by analyzing the trends in time series data for fifteen variables across four tier 2 indicators including infection prevalence (primary driver), sanitation standards, vaccination coverage, and health care workforce. Total data for drivers are compiled for a total of 219 countries from the United Nations (UN), World Bank database and the World Health Organization (WHO). Data availability varies by indicator as detailed in S1 Table."))
         ),
         br(),
         
         fluidRow(
-          column(12, strong("Pressure - antibiotic use (ABU)"), span("Data from QuintilesIMS are estimates of the total volume of sales of each antibiotic molecule (or combination of molecules) based on national sample surveys of antibiotic sales. Antibiotic consumption data are in kilograms and converted into defined daily doses (DDDs) using the Anatomical Therapeutic Chemical Classification System (ATC/DDD, 2016) developed by the WHO Collaborating Centre for Drug Statistics Methodology as in Klein et al. [1]."))
+          column(12, strong("Pressure - antibiotic use (ABU)"), span("Data from IQVIA database [1] are estimates of the total volume of sales of each antibiotic molecule (or combination of molecules) based on national sample surveys of antibiotic sales. Antibiotic consumption data are in kilograms and converted into defined daily doses (DDDs) using the Anatomical Therapeutic Chemical Classification System (ATC/DDD, 2016) developed by the WHO Collaborating Centre for Drug Statistics Methodology as in Klein et al. [2]. Newly Available Antibiotic Use defined as antibiotics first introduced in 1999 or later [2]."))
         ),
         br(),
         
         fluidRow(
-          column(12, strong("State - resistance"), span("Data obtained from ResistanceMap [2] which is a repository of global antimicrobial resistance data. ResistanceMap obtains data from public and private sources, including lab networks, hospitals, and government agencies. Data include resistance rates for eight high-priority pathogens isolated from blood and cerebrospinal fluid of patients and are aggregated at the country level on an annual basis. Data on ResistanceMap has been harmonized to present similar definitions of resistance across countries and regions to enable comparisons between countries."))
+          column(12, strong("State - resistance"), span("Data obtained from ResistanceMap [3] which is a repository of global antimicrobial resistance data. ResistanceMap obtains data from public and private sources, including lab networks, hospitals, and government agencies. Data include resistance rates for eight high-priority pathogens isolated from blood and cerebrospinal fluid of patients and are aggregated at the country level on an annual basis. Data on ResistanceMap has been harmonized to present similar definitions of resistance across countries and regions to enable comparisons between countries."))
         ),
         br(),
         
         fluidRow(
-          column(12, strong("Exposure – Drug resistance index"), span("The Drug Resistance Index (DRI) combines use and resistance rates into a single value that provides measures of antibiotic effectiveness relative to their use [3]. While DRI has been critiqued when used as a single indicator of antibiotic effectiveness [4], we here use it as part of a multi-indicator framework. We calculated the adaptive Drug Resistance Index for countries for which data on resistance and use is available over the time period following the methodology outlined in [3] and [5]. Briefly, the annual DRI was estimated for each country by the following equation:"))),
+          column(12, strong("Exposure – Drug resistance index"), span("The Drug Resistance Index (DRI) combines use and resistance rates into a single value that provides measures of antibiotic effectiveness relative to their use [4]. While DRI has been critiqued when used as a single indicator of antibiotic effectiveness [5], we here use it as part of a multi-indicator framework. We calculated the adaptive Drug Resistance Index for countries for which data on resistance and use is available over the time period following the methodology outlined in [4] and [6]. Briefly, the annual DRI was estimated for each country by the following equation:"))),
         
         withMathJax(),
         helpText('$$DRI = \\sum_k \\rho_k^{i,t} q_k^{i,t}$$'),
         fluidRow(
-          column(12, span('where, for country i at time t, \\(\\rho_k^{i,t}\\) is the proportion of resistance among all included organisms to drug k and \\(\\ q_k^{i,t}\\) is the proportion of drug k used for their treatment in all drugs included in the index. Pathogens included in the analysis were E. coli, K. pneumoniae, P. aeruginosa, S. aureus, E. faecium, and E. faecalis. Antibiotics included in the analysis were aminoglycosides, broad-spectrum penicillin, carbapenems, cephalosporins, narrow-spectrum penicillin, and quinolones. Because not all countries had data for all combinations, we included a country if they had at least four of the six organisms, and 10 of the 17 total combinations possible (S2 Table).'))),
+          column(12, span('where, for country i at time t, \\(\\rho_k^{i,t}\\) is the proportion of resistance among all included organisms to drug k and \\(\\ q_k^{i,t}\\) is the proportion of drug k used for their treatment in all drugs included in the index. Pathogens included in the analysis were E. coli, K. pneumoniae, P. aeruginosa, S. aureus, E. faecium, and E. faecalis. Antibiotics included in the analysis were aminoglycosides, broad-spectrum penicillin, carbapenems, cephalosporins, narrow-spectrum penicillin, and quinolones. Because not all countries had data for all combinations, we included a country if they had at least four of the six organisms, and 10 of the 17 total combinations possible (S3 Table).'))),
         br(),
         
         fluidRow(
-          column(12, strong("Action – TrACSS"), span("All action indicators are self-reported data from the Global Database for Tracking Antimicrobial Resistance Country Self-Assessment Survey (TrACSS) spanning the period of 2016-2023 (https://amrcountryprogress.org/). The survey responses are publicly available with the yearly updated version providing information about countries ongoing actions to live up to the global action plan on antimicrobial resistance All answers are given on an ordinal scale from A to E (0-4)."))
+          column(12, strong("Action – TrACSS"), span("All action indicators are self-reported data from the Global Database for Tracking Antimicrobial Resistance Country Self-Assessment Survey (TrACSS) spanning the period of 2016-2023 (https://amrcountryprogress.org/). The survey responses are publicly available with the yearly updated version providing information about countries ongoing actions to live up to the global action plan on antimicrobial resistance. All answers are given on an ordinal scale from A to E (0-4)."))
         ),
         br(),
         
@@ -276,19 +275,22 @@ ui <- page_navbar(
         ),
         br(),
         fluidRow(
-          column(12, span("1. Klein EY, Milkowska-Shibata M, Tseng KK, Sharland M, Gandra S, Pulcini C, et al. Assessment of WHO antibiotic consumption and access targets in 76 countries, 2000–15: an analysis of pharmaceutical sales data. The Lancet Infectious Diseases. 2021;21: 107–115. doi:10.1016/S1473-3099(20)30332-7"))),
+          column(12, span("1. OneHealthTrust. ResistanceMap: Antibiotic Use. 2024 [cited 13 Sep 2024]. Available: https://resistancemap.onehealthtrust.org/AntibioticUse.php"))),
         br(),
         fluidRow(
-          column(12, span("2. OneHealthTrust. ResistanceMap. [cited 1 Sep 2017]. Available: https://resistancemap.onehealthtrust.org/"))),
+          column(12, span("2. Klein EY, Milkowska-Shibata M, Tseng KK, Sharland M, Gandra S, Pulcini C, et al. Assessment of WHO antibiotic consumption and access targets in 76 countries, 2000–15: an analysis of pharmaceutical sales data. The Lancet Infectious Diseases. 2021;21: 107–115. doi:10.1016/S1473-3099(20)30332-7"))),
         br(),
         fluidRow(
-          column(12, span("3. Laxminarayan R, Klugman KP. Communicating trends in resistance using a drug resistance index. BMJ Open. 2011;1: e000135–e000135. doi:10.1136/bmjopen-2011-000135"))),
+          column(12, span("3. OneHealthTrust. ResistanceMap. [cited 1 Sep 2017]. Available: https://resistancemap.onehealthtrust.org/"))),
         br(),
         fluidRow(
-          column(12, span("4. Vandenbroucke-Grauls CMJE, Kahlmeter G, Kluytmans J, Kluytmans-Van Den Bergh M, Monnet DL, Simonsen GS, et al. The proposed Drug Resistance Index (DRI) is not a good measure of antibiotic effectiveness in relation to drug resistance. BMJ Global Health. 2019;4: 1–3. doi:10.1136/bmjgh-2019-001838"))),
+          column(12, span("4. Laxminarayan R, Klugman KP. Communicating trends in resistance using a drug resistance index. BMJ Open. 2011;1: e000135–e000135. doi:10.1136/bmjopen-2011-000135"))),
         br(),
         fluidRow(
-          column(12, span("5. Pant S, Klein E, Gandra S, Laxminarayan R. Tracking Antibiotic Effectiveness Worldwide 1999–2014 Using the Drug Resistance Index. Open Forum Infectious Diseases. 2016;3: 1481. doi:10.1093/ofid/ofw172.1183")))
+          column(12, span("5. Vandenbroucke-Grauls CMJE, Kahlmeter G, Kluytmans J, Kluytmans-Van Den Bergh M, Monnet DL, Simonsen GS, et al. The proposed Drug Resistance Index (DRI) is not a good measure of antibiotic effectiveness in relation to drug resistance. BMJ Global Health. 2019;4: 1–3. doi:10.1136/bmjgh-2019-001838"))),
+        br(),
+        fluidRow(
+          column(12, span("6. Pant S, Klein E, Gandra S, Laxminarayan R. Tracking Antibiotic Effectiveness Worldwide 1999–2014 Using the Drug Resistance Index. Open Forum Infectious Diseases. 2016;3: 1481. doi:10.1093/ofid/ofw172.1183")))
       )
     ),
     tabPanel(
