@@ -31,38 +31,57 @@ driver_indicators <- data.frame(
 
 
 use_indicators <- data.frame(
-  Tier1 = c("Use (Total)", "Use (Total)", "Use (Total)"),
-  Tier2 = c("BroadPerTotalABXUse", "NewABXUse", "TotalDDDPer1000Persons"),
-  Details = c("Broad spectrum antibiotics including Fluoroquinolones, Macrolides, third-generation cephalosporins, co-amoxiclav, clindamycin, oral vancomycin",
-              "New Antibiotics and their year of introduction: dalfopristin/quinupristin (2005), gatifloxacin (1999), moxifloxacin (1999), linezolid (2000), telithromycin (2001), balofloxacin (2006), Biapenem (2002), ertapenem (2002), pazufloxacin (2002), prulifloxacin (2002), daptomycin (2003), gemifloxacin (2003), doripenem (2005), tigecycline (2005), garenoxacin (2007), ceftobiprole (2008), sitafloxacin (2008), tebipenem (2009), telavancin (2009), antofloxacin (2010), ceftaroline (2011), ceftolozane/tazobactam (2014), dalbavancin (2014), oritavancin (2014), tedizolid (2014)",
-              "Total Per Capita Use"),
-  Description = c("Use of broad-spectrum antibiotics.", "Newly Available Antibiotic Use (defined as antibiotics first introduced in 1999 or later [1])", "ResistanceMap"),
-  UNIT = c("Defined Daily Doses (DDD)", "DDD", "DDD per 1000")
+  Tier1 = c("Use (Total)", "Use (Total)", "Use (Total)", "Use (Total)", "Use (Total)"),
+  Tier2 = c("BroadPerTotalABXUse", "BroadPerTotalABXUse", "BroadPerTotalABXUse", "NewABXUse", "TotalDDDPer1000Persons"),
+  IndicatorComponent = c("Fluoroquinolones, Macrolides",
+                         "third-generation cephalosporins",
+                         "co-amoxiclav, clindamycin, oral vancomycin",
+                         "dalfopristin/quinupristin (2005), gatifloxacin (1999), moxifloxacin (1999), linezolid (2000), telithromycin (2001), balofloxacin (2006), Biapenem (2002), ertapenem (2002), pazufloxacin (2002), prulifloxacin (2002), daptomycin (2003), gemifloxacin (2003), doripenem (2005), tigecycline (2005), garenoxacin (2007), ceftobiprole (2008), sitafloxacin (2008), tebipenem (2009), telavancin (2009), antofloxacin (2010), ceftaroline (2011), ceftolozane/tazobactam (2014), dalbavancin (2014), oritavancin (2014), tedizolid (2014)",
+                         "-"),
+  Source = c("IQVIA", "IQVIA", "IQVIA", "IQVIA", "IQVIA"),
+  UNIT = c("Defined Daily Doses (DDD)", "DDD", "DDD", "DDD", "DDD per 1000")
 )
 
 
 resistance_indicators <- data.frame(
     Tier1 = c("Resistance (Total)", "Resistance (Total)", "Resistance (Total)"),
-    Tier2 = c("MRSA", "CR", "STR"),
-    DESCRIPTION = c("Methicillin-resistant Staphylococcus aureus", "Carbapenems resistance in Enterobacteriaceae", "Streptococcal resistance to macrolides and penicillin (average)"),
+    Tier2 = c("MRSA: Methicillin-resistant Staphylococcus aureus", "CR: Carbapenem resistance (average)", "STR: Streptococcal resistance (average)"),
+    IndicatorComponent = c("-",
+                         "Enterobacteriaceae and other bacteria",
+                         "Macrolides and penicillin"),
+    Source = c("ResistanceMap", "ResistanceMap", "ResistanceMap"),
     UNIT = c("pct (%)", "pct (%)", "pct (%)")
   )
 
 dri_indicators <- data.frame(
-  TIER1 = c("DRI", "DRI", "DRI", "DRI", "DRI", "DRI",
-            "DRI", "DRI", "DRI", "DRI", "DRI", "DRI",
-            "DRI", "DRI", "DRI", "DRI"),
-  PATHOGEN = c("Enterococcus faecalis/faecium", "Escherichia coli", "Escherichia coli", "Escherichia coli", "Escherichia coli", "Escherichia coli", "Klebsiella pneumonia", "Klebsiella pneumonia", "Klebsiella pneumonia", "Klebsiella pneumonia", "Pseudomonas aeruginosa", "Pseudomonas aeruginosa", "Pseudomonas aeruginosa", "Pseudomonas aeruginosa", "Pseudomonas aeruginosa", "Staphylococcus aureus"),
-  ANTIBIOTICS = c("Aminopenicillins", "Aminoglycosides", "Aminopenicillins", "Carbapenems", "Cephalosporins (3rd gen)", "Fluoroquinolones", "Aminoglycosides",  "Carbapenems", "Cephalosporins (3rd gen)", "Fluoroquinolones", "Aminoglycosides",  "Carbapenems", "Cephalosporins (3rd gen)", "Fluoroquinolones", "Piperacillin-tazobactam", "Oxacillin/Cefoxitin (MRSA)"),
-  UNIT = rep("Unit Free", 16)
+  PATHOGEN = c("Enterococcus faecalis/faecium", 
+               "Escherichia coli", 
+               "Klebsiella pneumonia", 
+               "Pseudomonas aeruginosa", 
+               "Staphylococcus aureus"),
+  ANTIBIOTICS = c("Aminopenicillins", 
+                  "Aminoglycosides, Aminopenicillins, Carbapenems, Cephalosporins (3rd gen), Fluoroquinolones", 
+                  "Aminoglycosides, Carbapenems, Cephalosporins (3rd gen), Fluoroquinolones", 
+                  "Aminoglycosides, Carbapenems, Cephalosporins (3rd gen), Fluoroquinolones, Piperacillin-tazobactam", 
+                  "Oxacillin/Cefoxitin (MRSA)"),
+  SOURCE = c("IQVIA, ResistanceMap", "IQVIA, ResistanceMap", "IQVIA, ResistanceMap", "IQVIA, ResistanceMap", "IQVIA, ResistanceMap"),
+  UNIT = rep("Unit Free", 5)
 )
 
 ecology_indicators <- data.frame(
   CONTEXT = c("Economy", "Economy", "Climate", "Livestock", "Population"),
-  NAME = c("GDP", "Gini", "Mean Temperature", "Animal Production", "Population Density"),
-  DESCRIPTION = c("GDP per capita (log transformed)", "Gini index", "Mean temperature by population density of grid cells (weighted)", "Animal production in mass per country area", "Human population density (log transformed)"),
-  DATABASE = c("EORA", "Inequality – proportion of the lowest 20 % of the national income distribution", "SEDAC, BIOCLIM", "GLW", "SEDAC"),
-  UNIT = c("Unit Free", "Unit Free", "degree C", "Unit Free", "km-2")
+  COVARIATES = c("GDP", "Gini", "Mean Temperature", "Animal Production", "Population Density"),
+  DESCRIPTION = c("GDP (log transformed)", 
+                  "Gini index: Inequality –proportion of the lowest 20 % of the national income distribution, derived from country gini index for the years between 2004-2012", 
+                  "Mean temperature weighted by population density of 1x1 degree grid cells (weighted)", 
+                  "Animal production in mass per country area", 
+                  "Human population density (log transformed)"),
+  SOURCE = c("The Eora Global Supply Chain Database", 
+             "World Income Inequality Database - WIID", 
+             "NASA's Socioeconomic Data and Applications Center (SEDAC), NASA Center for Climate Simulation (BioClim)", 
+             "Gridded Livestock of the World (GLW)", 
+             "NASA's Socioeconomic Data and Applications Center (SEDAC)"),
+  UNIT = c("per capita", "pct (%)", "degree C", "animal volume (tonnes) per km2", "1/km2")
 )
 
 

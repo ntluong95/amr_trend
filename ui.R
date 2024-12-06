@@ -322,10 +322,10 @@ ui <- page_navbar(
           column(12, 
                  p("Driver (as the first DPSE: Driver, Pressure, State, and Exposure indicator) data was available for 148 countries. However, countries which had driver data only included if they had one of the other indicator categories (Use, Resistance, and DRI), hence only 73 countries included in drivers (data is standardised SD=1 by denoting the ratio of standard deviation to mean). Driver data included 3 tiers. Average of tier 3 indicators are taken from different data sources.",
                    style = "margin-bottom: 20px; font-style: italic;"), align = "center")),
-        br(),
-        fluidRow(
-          DTOutput("indicators_table")
-        ),
+        # br(),
+        # fluidRow(
+        #   DTOutput("indicators_table")
+        # ),
         tags$h4("DRIVERS: FACTORS INFLUENCING ANTIBIOTIC USE"),
         DTOutput("drivers_table"),
 
@@ -340,7 +340,7 @@ ui <- page_navbar(
         br(),
         tags$h4("USE: PRESSURES FOR RESISTANCE TO SPREAD"),
         DTOutput("use_table"),
-        br(),
+  
         tags$h4("RESISTANCE: CURRENT STATE OF ANTIBIOTIC RESISTANCE"),
         DTOutput("resistance_table"),
 
