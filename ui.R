@@ -378,8 +378,7 @@ ui <- page_navbar(
               For the 2000-2008 and 2008-2016 data, a <span style='color:red; font-weight:bold;'>red</span> color indicates worse status, while <span style='color:blue; font-weight:bold;'>blue</span> signifies good status. For the difference between the two periods, <span style='color:green; font-weight:bold;'>green</span> indicates improvement and <span style='color:purple; font-weight:bold;'>purple</span> indicates worsening conditions.
               <br><br>    
               <em>Governance action score reported in Tracking AMR Country Self-Assessment Survey (TrACSS) 
-              <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. 
-              Notable exception where governance score <b style='color:#C33C2E'>decreased</b> is the Netherlands.</em>
+              <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. However, some countries showed <b style='color:#F0C94C'>unchange</b> or even <b style='color:#C33C2E'>decreased</b> in governance action score.</em>
               <!--!html-->
               "
                 )
@@ -390,6 +389,7 @@ ui <- page_navbar(
       ),
       #TODO
       card(
+        style = "height: auto; min-height: 1200px;",
         card_header(
           "Changes of DPSE indicator between 2000 and 2016",
           class = "bg-primary text-white",
@@ -415,6 +415,7 @@ ui <- page_navbar(
       ),
       div(
         card(
+          style = "height: auto; min-height: 1200px;",
           card_header(
             "Changes of governance action between 2016 and 2023",
             class = "bg-primary text-white",
