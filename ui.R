@@ -23,88 +23,123 @@ pacman::p_load(
 
 # Start the UI
 ui <- page_navbar(
-  title = "AMR Trend Explorer",
+  title = div(
+    # style = "display: flex; flex-direction: column; align-items: flex-start; padding-left: 30px;",
+    class = "d-flex align-items-center",
+    img(
+      src = "logo-gedb.png",
+      width = "380px",
+      style = "padding-left: 30px;",
+      height = "77.5px"
+    ),
+    div(
+      "AMR Trend Explorer",
+      style = "
+      /*css*/
+      font-size: 1.2rem; 
+      font-weight: 600; 
+      margin-right: 10px;
+      margin-left: 20px;
+      /*!css*/
+      "
+    ),
+  ),
+  navbar_options = list(class = "bg-primary", theme = "dark"),
   fluid = TRUE,
   id = "navbar",
-  theme = bs_theme(version = 4, bootswatch = "yeti"),
+  #REVIEW file _brand.yml define the theme
+  #fmt: skip
+  theme = bs_theme(version = 5, bootswatch = "zephyr") %>%
+    bslib::bs_add_rules(
+      rules = "
+      /*css*/
+      .navbar.navbar-default {
+        background-color: $primary !important; 
+        color: #secondary !important;
+      }
 
-  # Article Info
+      .navbar .navbar-brand {
+        display: flex;
+        align-items: center;
+      }
+      /*!css*/
+      "),
+
+  #TODO Article Info
   nav_panel(
     title = "Article Info",
     fluidRow(column(
       width = 12,
       em(
-        "This is an interactive web application to explore the results for the article:"
+        "This is an interactive web application to explore the results for the article:",
+        style = "font-size: 20px;"
       ),
       br(),
       strong(
-        'Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023'
+        "Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023",
+        style = "font-size: 20px;"
       ),
       br(),
-      "Peter Søgaard Jørgensen",
-      tags$sup("1,2,3,*,"),
-      "Luong Nguyen Thanh",
-      tags$sup("1,3,"),
-      "Ege Pehlivanoğlu",
-      tags$sup("1,"),
-      "Franziska Klein",
-      tags$sup("1, #a,"),
-      "Didier Wernli",
-      tags$sup("4,"),
-      "Dusan Jasovsky",
-      tags$sup("5, #b,"),
-      "Athena Aktipis",
-      tags$sup("6,"),
-      "Rob R. Dunn",
-      tags$sup("7,"),
-      "Yrjö Gröhn",
-      tags$sup("8,"),
-      "Guillaume Lhermie",
-      tags$sup("8, #c,"),
-      "H. Morgan Scott",
-      tags$sup("9,"),
-      "Eili Y. Klein",
-      tags$sup("10,11"),
+      "Peter Søgaard Jørgensen,",
+      "Luong Nguyen Thanh,",
+      "Ege Pehlivanoğlu,",
+      "Franziska Klein,",
+      "Didier Wernli,",
+      "Dusan Jasovsky,",
+      "Athena Aktipis,",
+      "Rob R. Dunn,",
+      "Yrjö Gröhn,",
+      br(),
+      "Guillaume Lhermie,",
+      "H. Morgan Scott,",
+      "Eili Y. Klein,",
+
       br(),
       br(),
-      strong("Affiliations:"),
+      # strong("Affiliations:"),
+      # br(),
+      # "1. Global Economic Dynamics and the Biosphere, The Royal Swedish Academy of Sciences, SE-114 18, Stockholm, Sweden",
+      # br(),
+      # "2. Stockholm Resilience Centre, Stockholm University, SE-106 91, Stockholm, Sweden",
+      # br(),
+      # "3. Uppsala Antibiotic Centre and Department of Women’s and Children’s Health, Uppsala University, SE-751 05, Uppsala, Sweden",
+      # br(),
+      # "4. Global Studies Institute, Transformative Governance Lab, University of Geneva, Geneva, Switzerland",
+      # br(),
+      # "5. ReAct Europe, Uppsala University, Uppsala, Sweden",
+      # br(),
+      # "6. Department of Psychology, Arizona State University, Arizona, USA",
+      # br(),
+      # "7.  Department of Applied Ecology, North Carolina State University,Raleigh, North Carolina, USA",
+      # br(),
+      # "8. Department of Population Medicine and Diagnostic Sciences, Cornell University, Ithaca, New York, USA",
+      # br(),
+      # "9. Department of Veterinary Pathobiology, Texas A&M University, College Station, Texas, USA",
+      # br(),
+      # "10. One Health Trust, Washington, District of Columbia, USA",
+      # br(),
+      # "11. Johns Hopkins School of Medicine, Department of Emergency Medicine, Baltimore, Maryland, USA",
+      # br(),
+      # br(),
+      # strong("Current addresses:"),
+      # br(),
+      # tags$sup("#a."),
+      # "Social Sciences Group, Wageningen University & Research, Wageningen, The Netherlands",
+      # br(),
+      # tags$sup("#b."),
+      # "Médicins Sans Frontières (MSF) International, Geneva, Switzerland",
+      # br(),
+      # tags$sup("#c."),
+      # "Faculty of Veterinary Medicine, University of Calgary, Canada",
+      # br(),
+      # br(),
+      strong(
+        "Link to the original article:"
+      ),
+      "https://journals.plos.org/globalpublichealth/",
       br(),
-      "1. Global Economic Dynamics and the Biosphere, The Royal Swedish Academy of Sciences, SE-114 18, Stockholm, Sweden",
-      br(),
-      "2. Stockholm Resilience Centre, Stockholm University, SE-106 91, Stockholm, Sweden",
-      br(),
-      "3. Uppsala Antibiotic Centre and Department of Women’s and Children’s Health, Uppsala University, SE-751 05, Uppsala, Sweden",
-      br(),
-      "4. Global Studies Institute, Transformative Governance Lab, University of Geneva, Geneva, Switzerland",
-      br(),
-      "5. ReAct Europe, Uppsala University, Uppsala, Sweden",
-      br(),
-      "6. Department of Psychology, Arizona State University, Arizona, USA",
-      br(),
-      "7.  Department of Applied Ecology, North Carolina State University,Raleigh, North Carolina, USA",
-      br(),
-      "8. Department of Population Medicine and Diagnostic Sciences, Cornell University, Ithaca, New York, USA",
-      br(),
-      "9. Department of Veterinary Pathobiology, Texas A&M University, College Station, Texas, USA",
-      br(),
-      "10. One Health Trust, Washington, District of Columbia, USA",
-      br(),
-      "11. Johns Hopkins School of Medicine, Department of Emergency Medicine, Baltimore, Maryland, USA",
-      br(),
-      br(),
-      strong("Current addresses:"),
-      br(),
-      tags$sup("#a."),
-      "Social Sciences Group, Wageningen University & Research, Wageningen, The Netherlands",
-      br(),
-      tags$sup("#b."),
-      "Médicins Sans Frontières (MSF) International, Geneva, Switzerland",
-      br(),
-      tags$sup("#c."),
-      "Faculty of Veterinary Medicine, University of Calgary, Canada",
-      br(),
-      br(),
-      em("* Corresponding author E-mail: peter.sogaard.jorgensen@su.se (PSJ)"),
+      strong("Corresponding author E-mail:"),
+      "peter.sogaard.jorgensen@su.se (PSJ)",
       br(),
       br(),
       strong("Table of Contents"),
@@ -174,22 +209,22 @@ ui <- page_navbar(
           tags$li(tags$a(
             href = "#",
             onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')",
-            "S6 Table – Governance Syndrome questions"
+            "S6 Table - Governance Syndrome questions"
           )),
           tags$li(tags$a(
             href = "#",
             onclick = "Shiny.setInputValue('navTo', 'action-index')",
-            "S7 Table – Questions used for calculating the action index"
+            "S7 Table - Questions used for calculating the action index"
           )),
           tags$li(tags$a(
             href = "#",
             onclick = "Shiny.setInputValue('navTo', 'model-formulas')",
-            "S8 Table – Model Formulas for Association between Action and Indicator change and sign of change"
+            "S8 Table - Model Formulas for Association between Action and Indicator change and sign of change"
           )),
           tags$li(tags$a(
             href = "#",
             onclick = "Shiny.setInputValue('navTo', 'de-escalation-plots')",
-            "S9 Table. De-escalation plot formulas for univariate models"
+            "S9 Table - De-escalation plot formulas for univariate models"
           )),
           tags$li(tags$a(
             href = "#",
@@ -220,9 +255,9 @@ ui <- page_navbar(
     ))
   ),
 
-  # Main results,
+  #TODO Main results,
   navbarMenu(
-    "Main results",
+    title = "Main results",
     tabPanel(
       "Association between stated action and DPSE. indicators",
       value = "main-fig2",
@@ -374,7 +409,7 @@ ui <- page_navbar(
     )
   ),
 
-  # Methodology
+  #TODO Methodology
   navbarMenu(
     "Methodology",
     tabPanel(
@@ -437,7 +472,7 @@ ui <- page_navbar(
           column(
             12,
             span(
-              'where, for country i at time t, \\(\\rho_k^{i,t}\\) is the proportion of resistance among all included organisms to drug k and \\(\\ q_k^{i,t}\\) is the proportion of drug k used for their treatment in all drugs included in the index. Pathogens included in the analysis were E. coli, K. pneumoniae, P. aeruginosa, S. aureus, E. faecium, and E. faecalis. Antibiotics included in the analysis were aminoglycosides, broad-spectrum penicillin, carbapenems, cephalosporins, narrow-spectrum penicillin, and quinolones. Because not all countries had data for all combinations, we included a country if they had at least four of the six organisms, and 10 of the 17 total combinations possible (S3 Table).'
+              "where, for country i at time t, \\(\\rho_k^{i,t}\\) is the proportion of resistance among all included organisms to drug k and \\(\\ q_k^{i,t}\\) is the proportion of drug k used for their treatment in all drugs included in the index. Pathogens included in the analysis were E. coli, K. pneumoniae, P. aeruginosa, S. aureus, E. faecium, and E. faecalis. Antibiotics included in the analysis were aminoglycosides, broad-spectrum penicillin, carbapenems, cephalosporins, narrow-spectrum penicillin, and quinolones. Because not all countries had data for all combinations, we included a country if they had at least four of the six organisms, and 10 of the 17 total combinations possible (S3 Table)."
             )
           )
         ),
@@ -847,7 +882,7 @@ ui <- page_navbar(
     )
   ),
 
-  # Supporting results
+  #TODO Supporting results
   navbarMenu(
     "Supporting results",
     tabPanel(
@@ -967,6 +1002,7 @@ ui <- page_navbar(
 
           # Note added here
           tags$hr(), # Adds a horizontal line for visual separation
+
           HTML(
             "<strong>Note:</strong> For variable name reference, please check the <strong>S1-4 Table</strong>. <em>The maps may take few seconds to load, please be patient!</em>"
           ),
