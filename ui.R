@@ -83,15 +83,14 @@ ui <- page_navbar(
   nav_panel(
     title = "Home",
     layout_columns(
-      col_widths = c(3, 4, 5),
+      col_widths = c(3, 5, 4),
       # --- LEFT COLUMN ---
       div(
         card(
-          div(
-            card_header(
-              "ARTICLE INFORMATION",
-              class = "bg-primary text-white"
-            )
+          card_header(
+            "Article Information",
+            class = "bg-primary text-white",
+            style = "white-space: normal; overflow-x: hidden;"
           ),
           card_body(
             #fmt: skip
@@ -236,20 +235,6 @@ ui <- page_navbar(
                       onclick = "Shiny.setInputValue('navTo', 'global-models-formulas')",
                       "S11 Table - Global Model Formulas for The Model Selection"
                     ))
-                  ),
-
-                  tags$li(tags$strong("Annex 3. Supporting results")),
-                  tags$ul(
-                    tags$li(tags$a(
-                      href = "#",
-                      onclick = "Shiny.setInputValue('navTo', 'choropleth-plots')",
-                      "Figure S0a. Changes of ABR DPSE- indicators over time (2000-2016) in 73 countries"
-                    )),
-                    tags$li(tags$a(
-                      href = "#",
-                      onclick = "Shiny.setInputValue('navTo', 'governance-changes')",
-                      "Figure S0b. Changes of governance action between 2016 and 2023"
-                    )),
                   )
                 )
               )
@@ -258,11 +243,10 @@ ui <- page_navbar(
         ),
         #REVIEW
         card(
-          div(
-            card_header(
-              "DPSE INDICATOR EXPLORER",
-              class = "bg-primary text-white"
-            )
+          card_header(
+            "Indicator Explorer",
+            class = "bg-primary text-white",
+            style = "white-space: normal; overflow-x: hidden;"
           ),
           card_body(
             pickerInput(
@@ -363,6 +347,23 @@ ui <- page_navbar(
                 choices = c("Physicians", "Nursing & midwifery")
               )
             ),
+
+            #fmt: skip
+            pickerInput(
+              inputId = "income_gov",
+              label = "Select country income:",
+              choices = c("LMIC", "HIC"),
+              selected = c("LMIC", "HIC"),
+              multiple = TRUE
+            ),
+            pickerInput(
+              inputId = "trend",
+              label = "Select governance trend:",
+              choices = c("Increase", "Decrease"),
+              selected = c("Increase", "Decrease"),
+              multiple = TRUE
+            ),
+
             # tags$hr(),
             accordion(
               id = "note-accordion",
@@ -375,6 +376,10 @@ ui <- page_navbar(
               For variable name reference, please check the <strong>S1-4 Table</strong>. 
               <br><br>
               For the 2000-2008 and 2008-2016 data, a <span style='color:red; font-weight:bold;'>red</span> color indicates worse status, while <span style='color:blue; font-weight:bold;'>blue</span> signifies good status. For the difference between the two periods, <span style='color:green; font-weight:bold;'>green</span> indicates improvement and <span style='color:purple; font-weight:bold;'>purple</span> indicates worsening conditions.
+              <br><br>    
+              <em>Governance action score reported in Tracking AMR Country Self-Assessment Survey (TrACSS) 
+              <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. 
+              Notable exception where governance score <b style='color:#C33C2E'>decreased</b> is the Netherlands.</em>
               <!--!html-->
               "
                 )
@@ -384,17 +389,42 @@ ui <- page_navbar(
         )
       ),
       #TODO
+      card(
+        card_header(
+          "Changes of DPSE indicator between 2000 and 2016",
+          class = "bg-primary text-white",
+          style = "white-space: normal; overflow-x: hidden;"
+        ),
+        card_body(
+          # Card body content remains the same
+          div(
+            style = "min-height: 400px; height: 50vh;",
+            highchartOutput(outputId = "map_x0008", height = "100%")
+          ),
+          br(),
+          div(
+            style = "min-height: 400px; height: 50vh;",
+            highchartOutput(outputId = "map_x0816", height = "100%")
+          ),
+          br(),
+          div(
+            style = "min-height: 400px; height: 50vh;",
+            highchartOutput(outputId = "map_change", height = "100%")
+          )
+        )
+      ),
       div(
         card(
-          card_body(highchartOutput(outputId = "map_x0008", height = "400px"))
-        ),
-        br(),
-        card(
-          card_body(highchartOutput(outputId = "map_x0816", height = "400px"))
-        ),
-        br(),
-        card(
-          card_body(highchartOutput(outputId = "map_change", height = "400px"))
+          card_header(
+            "Changes of governance action between 2016 and 2023",
+            class = "bg-primary text-white",
+            style = "white-space: normal; overflow-x: hidden;"
+          ),
+          card_body(plotlyOutput(
+            "governance_changes",
+            height = 1000,
+            width = "100%"
+          ))
         )
       )
     )
@@ -1022,45 +1052,6 @@ ui <- page_navbar(
             )
           ),
           column(10, uiOutput("global_model_formulas"))
-        )
-      )
-    )
-  ),
-
-  #TODO Supporting results
-  navbarMenu(
-    "Supporting results",
-
-    tabPanel(
-      "Changes of governance action between 2016 and 2023",
-      value = "governance-changes",
-
-      sidebarLayout(
-        sidebarPanel(
-          fluidRow(h3(strong("Filters"))),
-          br(),
-          fluidRow(pickerInput(
-            "income_gov",
-            "Select country income",
-            choices = c("LMIC", "HIC"),
-            selected = c("LMIC", "HIC"),
-            multiple = TRUE
-          )),
-          fluidRow(pickerInput(
-            "trend",
-            "Select governance trend:",
-            choices = c("Increase", "Decrease"),
-            selected = c("Increase", "Decrease"),
-            multiple = TRUE
-          )),
-          # Note added here
-          tags$hr(), # Adds a horizontal line for visual separation
-          HTML(
-            "<b> Figure S0b. </b> Changes of governance action between 2016 and 2023. <em> Governance action scrore reported in Tracking AMR Country Self-Assessment Survey (TrACSS) <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. Notable exception where goverance score <b style='color:#C33C2E'>decreased</b>, is the Netherlands. </em>"
-          )
-        ),
-        mainPanel(
-          plotlyOutput("governance_changes", height = 1000, width = "100%"),
         )
       )
     )
