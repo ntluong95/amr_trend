@@ -15,7 +15,7 @@ color:
     pink: "#FF3D7F"
 
   primary: blue
-  secondary: "#FFF"
+
   danger: pink
 
 

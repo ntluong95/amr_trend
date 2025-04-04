@@ -40,11 +40,12 @@ ui <- page_navbar(
       font-weight: 600; 
       margin-right: 10px;
       margin-left: 20px;
+      color: #fff !important;
       /*!css*/
       "
     ),
   ),
-  navbar_options = list(class = "bg-primary", theme = "dark"),
+  navbar_options = list(class = "bg-primary", theme = "light"),
   fluid = TRUE,
   id = "navbar",
   #REVIEW file _brand.yml define the theme
@@ -62,197 +63,321 @@ ui <- page_navbar(
         display: flex;
         align-items: center;
       }
+
+      .navbar-nav .nav-link {
+        color: #d1dddf !important; 
+      }
+
+      .navbar-nav .nav-link.active,
+      .navbar-nav .nav-link:hover {
+        color: white !important;
+      }
       /*!css*/
       "),
 
   #TODO Article Info
   nav_panel(
     title = "Article Info",
-    fluidRow(column(
-      width = 12,
-      em(
-        "This is an interactive web application to explore the results for the article:",
-        style = "font-size: 20px;"
-      ),
-      br(),
-      strong(
-        "Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023",
-        style = "font-size: 20px;"
-      ),
-      br(),
-      "Peter Søgaard Jørgensen,",
-      "Luong Nguyen Thanh,",
-      "Ege Pehlivanoğlu,",
-      "Franziska Klein,",
-      "Didier Wernli,",
-      "Dusan Jasovsky,",
-      "Athena Aktipis,",
-      "Rob R. Dunn,",
-      "Yrjö Gröhn,",
-      br(),
-      "Guillaume Lhermie,",
-      "H. Morgan Scott,",
-      "Eili Y. Klein,",
+    layout_columns(
+      col_widths = c(4, 8),
+      # --- LEFT COLUMN ---
+      div(
+        card(
+          div(
+            card_header(
+              "Article Information",
+              class = "bg-primary text-white"
+            )
+          ),
+          card_body(
+            em(
+              "This is an interactive web application to explore the results for the article:"
+            ),
+            strong(
+              "Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023",
+              style = "font-size: 18px;"
+            ),
+            "Peter Søgaard Jørgensen,",
+            "Luong Nguyen Thanh,",
+            "Ege Pehlivanoğlu,",
+            "Franziska Klein,",
+            "Didier Wernli,",
+            "Dusan Jasovsky,",
+            "Athena Aktipis,",
+            "Rob R. Dunn,",
+            "Yrjö Gröhn,",
+            "Guillaume Lhermie,",
+            "H. Morgan Scott,",
+            "Eili Y. Klein,",
 
-      br(),
-      br(),
-      # strong("Affiliations:"),
-      # br(),
-      # "1. Global Economic Dynamics and the Biosphere, The Royal Swedish Academy of Sciences, SE-114 18, Stockholm, Sweden",
-      # br(),
-      # "2. Stockholm Resilience Centre, Stockholm University, SE-106 91, Stockholm, Sweden",
-      # br(),
-      # "3. Uppsala Antibiotic Centre and Department of Women’s and Children’s Health, Uppsala University, SE-751 05, Uppsala, Sweden",
-      # br(),
-      # "4. Global Studies Institute, Transformative Governance Lab, University of Geneva, Geneva, Switzerland",
-      # br(),
-      # "5. ReAct Europe, Uppsala University, Uppsala, Sweden",
-      # br(),
-      # "6. Department of Psychology, Arizona State University, Arizona, USA",
-      # br(),
-      # "7.  Department of Applied Ecology, North Carolina State University,Raleigh, North Carolina, USA",
-      # br(),
-      # "8. Department of Population Medicine and Diagnostic Sciences, Cornell University, Ithaca, New York, USA",
-      # br(),
-      # "9. Department of Veterinary Pathobiology, Texas A&M University, College Station, Texas, USA",
-      # br(),
-      # "10. One Health Trust, Washington, District of Columbia, USA",
-      # br(),
-      # "11. Johns Hopkins School of Medicine, Department of Emergency Medicine, Baltimore, Maryland, USA",
-      # br(),
-      # br(),
-      # strong("Current addresses:"),
-      # br(),
-      # tags$sup("#a."),
-      # "Social Sciences Group, Wageningen University & Research, Wageningen, The Netherlands",
-      # br(),
-      # tags$sup("#b."),
-      # "Médicins Sans Frontières (MSF) International, Geneva, Switzerland",
-      # br(),
-      # tags$sup("#c."),
-      # "Faculty of Veterinary Medicine, University of Calgary, Canada",
-      # br(),
-      # br(),
-      strong(
-        "Link to the original article:"
-      ),
-      "https://journals.plos.org/globalpublichealth/",
-      br(),
-      strong("Corresponding author E-mail:"),
-      "peter.sogaard.jorgensen@su.se (PSJ)",
-      br(),
-      br(),
-      strong("Table of Contents"),
-      br(),
-      tags$ul(
-        tags$li(tags$strong("Annex 1. Main results")),
-        tags$ul(
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'main-fig2')",
-            "Figure 2. Association between stated action and linear trend, and categorial trend"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'main-fig3')",
-            "Figure 3. De-escalation of DPSE. De-escalation ratios for Drivers, Use, Resistance, and DRI"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'main-fig4')",
-            "Figure 4. Most important variables in model selection"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'main-fig5')",
-            "Figure 5. Actions levels in animal protein produced countries for animal and human related Antibitotic Indicators"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'main-fig6')",
-            "Figure 6. Classification of country ABR governance syndrome"
-          ))
+            strong(
+              "Link to the original article:"
+            ),
+            "https://journals.plos.org/globalpublichealth/",
+
+            strong("Corresponding author E-mail:"),
+            "peter.sogaard.jorgensen@su.se (PSJ)",
+
+            accordion(
+              id = "toc-accordion",
+              open = FALSE,
+              accordion_panel(
+                title = "Table of Contents",
+                tags$ul(
+                  tags$li(tags$strong("Annex 1. Main results")),
+                  tags$ul(
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'main-fig2')",
+                      "Figure 2. Association between stated action and linear trend, and categorial trend"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'main-fig3')",
+                      "Figure 3. De-escalation of DPSE. De-escalation ratios for Drivers, Use, Resistance, and DRI"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'main-fig4')",
+                      "Figure 4. Most important variables in model selection"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'main-fig5')",
+                      "Figure 5. Actions levels in animal protein produced countries for animal and human related Antibitotic Indicators"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'main-fig6')",
+                      "Figure 6. Classification of country ABR governance syndrome"
+                    ))
+                  ),
+
+                  tags$li(tags$strong("Annex 2. Methodology")),
+                  tags$ul(
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'dpsea-description')",
+                      "S1 Text - Description of DPSEA indicators"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
+                      "S1 Table - Indicator selection for Driver categories"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
+                      "S2 Table - Indicator selection for Use and Resistance categories"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
+                      "S3 Table - Indicator selection for DRI (exposure) categories"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
+                      "S4 Table - Ecological variables used as covariates"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'country-selection')",
+                      "S5 Table - List of countries included in the study"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')",
+                      "S6 Table - Governance Syndrome questions"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'action-index')",
+                      "S7 Table - Questions used for calculating the action index"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'model-formulas')",
+                      "S8 Table - Model Formulas for Association between Action and Indicator change and sign of change"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'de-escalation-plots')",
+                      "S9 Table - De-escalation plot formulas for univariate models"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'global-models-data')",
+                      "S10 Table - Global Models Data Subset Formulas for The Model Selection"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'global-models-formulas')",
+                      "S11 Table - Global Model Formulas for The Model Selection"
+                    ))
+                  ),
+
+                  tags$li(tags$strong("Annex 3. Supporting results")),
+                  tags$ul(
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'choropleth-plots')",
+                      "Figure S0a. Changes of ABR DPSE- indicators over time (2000-2016) in 73 countries"
+                    )),
+                    tags$li(tags$a(
+                      href = "#",
+                      onclick = "Shiny.setInputValue('navTo', 'governance-changes')",
+                      "Figure S0b. Changes of governance action between 2016 and 2023"
+                    )),
+                  )
+                )
+              )
+            )
+          )
         ),
-
-        tags$li(tags$strong("Annex 2. Methodology")),
-        tags$ul(
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'dpsea-description')",
-            "S1 Text - Description of DPSEA indicators"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
-            "S1 Table - Indicator selection for Driver categories"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
-            "S2 Table - Indicator selection for Use and Resistance categories"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
-            "S3 Table - Indicator selection for DRI (exposure) categories"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'indicator-used')",
-            "S4 Table - Ecological variables used as covariates"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'country-selection')",
-            "S5 Table - List of countries included in the study"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'governance-syndrome')",
-            "S6 Table - Governance Syndrome questions"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'action-index')",
-            "S7 Table - Questions used for calculating the action index"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'model-formulas')",
-            "S8 Table - Model Formulas for Association between Action and Indicator change and sign of change"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'de-escalation-plots')",
-            "S9 Table - De-escalation plot formulas for univariate models"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'global-models-data')",
-            "S10 Table - Global Models Data Subset Formulas for The Model Selection"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'global-models-formulas')",
-            "S11 Table - Global Model Formulas for The Model Selection"
-          ))
+        #REVIEW
+        card(
+          div(
+            card_header(
+              "Filters",
+              class = "bg-primary text-white"
+            )
+          ),
+          card_body(
+            "The maps may take few seconds to load, please be patient",
+            pickerInput(
+              "dpse",
+              "Select DPSE indicators:",
+              choices = c("DRIVERS", "USE", "RESISTANCE", "DRI"),
+              selected = "DRIVERS",
+              multiple = FALSE
+            ),
+            pickerInput(
+              "level",
+              "Select data tier:",
+              choices = c("Tier 1", "Tier 2", "Tier 3"),
+              selected = "Tier 1",
+              multiple = FALSE
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 2' && input.dpse == 'DRIVERS'",
+              pickerInput(
+                "group",
+                "Select Group:",
+                choices = c("Infections", "Sanitation", "Vaccines", "Workforce")
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 2' && input.dpse == 'USE'",
+              pickerInput(
+                "shortname",
+                "Select Short Name:",
+                choices = c(
+                  "BroadPerTotalABXUse" = "Broad Spectrum vs. Total ABX Use",
+                  "NewABXUse" = "New ABX Use",
+                  "TotalDDDPer1000Persons" = "Total DDD per 1000 Persons"
+                )
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 2' && input.dpse == 'RESISTANCE'",
+              pickerInput(
+                "shortname",
+                "Select Short Name:",
+                choices = c(
+                  "CR" = "Carbapenem-resistant",
+                  "STR" = "Streptomycin-resistant",
+                  "MRSA" = "Methicillin-resistant Staphylococcus aureus"
+                )
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS'",
+              pickerInput(
+                "group",
+                "Select Group:",
+                choices = c("Infections", "Sanitation", "Vaccines", "Workforce")
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Infections'",
+              pickerInput(
+                "shortname",
+                "Select Short Name:",
+                choices = c("HIV", "TB")
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Sanitation'",
+              pickerInput(
+                "shortname",
+                "Select Short Name:",
+                choices = c(
+                  "Drinking Water Source",
+                  "Overall Sanitation",
+                  "Water Source Access"
+                )
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Vaccines'",
+              pickerInput(
+                "shortname",
+                "Select Short Name:",
+                choices = c(
+                  "DTP3",
+                  "HepB3",
+                  "Hib3",
+                  "Measles",
+                  "PCV3",
+                  "Pol3",
+                  "RCV1"
+                )
+              )
+            ),
+            conditionalPanel(
+              condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Workforce'",
+              pickerInput(
+                "shortname",
+                "Select Short Name:",
+                choices = c("Physicians", "Nursing & midwifery")
+              )
+            ),
+            # tags$hr(),
+            accordion(
+              id = "note-accordion",
+              open = FALSE, # Closed by default
+              accordion_panel(
+                title = "Notes and Instructions",
+                HTML(
+                  "
+              <!--html-->
+              For variable name reference, please check the <strong>S1-4 Table</strong>. 
+              <br><br>
+              For the 2000-2008 and 2008-2016 data, a <span style='color:red; font-weight:bold;'>red</span> color indicates worse status, while <span style='color:blue; font-weight:bold;'>blue</span> signifies good status. For the difference between the two periods, <span style='color:green; font-weight:bold;'>green</span> indicates improvement and <span style='color:purple; font-weight:bold;'>purple</span> indicates worsening conditions.
+              <!--!html-->
+              "
+                )
+              )
+            )
+          )
+        )
+      ),
+      #TODO
+      div(
+        card(
+          card_body(highchartOutput(outputId = "map_x0008", height = "400px"))
         ),
-
-        tags$li(tags$strong("Annex 3. Supporting results")),
-        tags$ul(
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'choropleth-plots')",
-            "Figure S0a. Changes of ABR DPSE- indicators over time (2000-2016) in 73 countries"
-          )),
-          tags$li(tags$a(
-            href = "#",
-            onclick = "Shiny.setInputValue('navTo', 'governance-changes')",
-            "Figure S0b. Changes of governance action between 2016 and 2023"
-          )),
+        br(),
+        card(
+          card_body(highchartOutput(outputId = "map_x0816", height = "400px"))
+        ),
+        br(),
+        card(
+          card_body(highchartOutput(outputId = "map_change", height = "400px"))
         )
       )
-    ))
+    )
   ),
 
   #TODO Main results,
@@ -885,138 +1010,6 @@ ui <- page_navbar(
   #TODO Supporting results
   navbarMenu(
     "Supporting results",
-    tabPanel(
-      "World map of DPSE indicators",
-      value = "choropleth-plots",
-
-      sidebarLayout(
-        sidebarPanel(
-          fluidRow(h3(strong("Filters"))),
-          br(),
-          fluidRow(pickerInput(
-            "dpse",
-            "Select DPSE indicators:",
-            choices = c("DRIVERS", "USE", "RESISTANCE", "DRI"),
-            selected = "DRIVERS",
-            multiple = FALSE
-          )),
-          fluidRow(pickerInput(
-            "level",
-            "Select data tier:",
-            choices = c("Tier 1", "Tier 2", "Tier 3"),
-            selected = "Tier 1",
-            multiple = FALSE
-          )),
-
-          # Tier 2 Specific Conditional Panels
-          conditionalPanel(
-            condition = "input.level == 'Tier 2' && input.dpse == 'DRIVERS'",
-            fluidRow(pickerInput(
-              "group",
-              "Select Group:",
-              choices = c("Infections", "Sanitation", "Vaccines", "Workforce")
-            ))
-          ),
-          conditionalPanel(
-            condition = "input.level == 'Tier 2' && input.dpse == 'USE'",
-            fluidRow(pickerInput(
-              "shortname",
-              "Select Short Name:",
-              choices = c(
-                "BroadPerTotalABXUse" = "Broad Spectrum vs. Total ABX Use",
-                "NewABXUse" = "New ABX Use",
-                "TotalDDDPer1000Persons" = "Total DDD per 1000 Persons"
-              )
-            ))
-          ),
-          conditionalPanel(
-            condition = "input.level == 'Tier 2' && input.dpse == 'RESISTANCE'",
-            fluidRow(pickerInput(
-              "shortname",
-              "Select Short Name:",
-              choices = c(
-                "CR" = "Carbapenem-resistant",
-                "STR" = "Streptomycin-resistant",
-                "MRSA" = "Methicillin-resistant Staphylococcus aureus"
-              )
-            ))
-          ),
-
-          # Tier 3 Specific Conditional Panels
-          conditionalPanel(
-            condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS'",
-            fluidRow(pickerInput(
-              "group",
-              "Select Group:",
-              choices = c("Infections", "Sanitation", "Vaccines", "Workforce")
-            ))
-            # fluidRow(pickerInput("shortname", "Select Short Name:", choices = NULL))  # Initially empty, to be filled based on "group" selection
-          ),
-          conditionalPanel(
-            condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Infections'",
-            fluidRow(pickerInput(
-              "shortname",
-              "Select Short Name:",
-              choices = c("HIV", "TB")
-            ))
-          ),
-
-          # The color scheme seems to work well. However, when input.level = Tier 3, and input&group != "Infection), the color scale for the 3 plots need to be reverse
-
-          conditionalPanel(
-            condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Sanitation'",
-            fluidRow(pickerInput(
-              "shortname",
-              "Select Short Name:",
-              choices = c(
-                "Drinking Water Source",
-                "Overall Sanitation",
-                "Water Source Access"
-              )
-            ))
-          ),
-          conditionalPanel(
-            condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Vaccines'",
-            fluidRow(pickerInput(
-              "shortname",
-              "Select Short Name:",
-              choices = c(
-                "DTP3",
-                "HepB3",
-                "Hib3",
-                "Measles",
-                "PCV3",
-                "Pol3",
-                "RCV1"
-              )
-            ))
-          ),
-          conditionalPanel(
-            condition = "input.level == 'Tier 3' && input.dpse == 'DRIVERS' && input.group == 'Workforce'",
-            fluidRow(pickerInput(
-              "shortname",
-              "Select Short Name:",
-              choices = c("Physicians", "Nursing & midwifery")
-            ))
-          ),
-
-          # Note added here
-          tags$hr(), # Adds a horizontal line for visual separation
-
-          HTML(
-            "<strong>Note:</strong> For variable name reference, please check the <strong>S1-4 Table</strong>. <em>The maps may take few seconds to load, please be patient!</em>"
-          ),
-          HTML(
-            "<em>For the 2000-2008 and 2008-2016 data, a red color indicates worse status, while blue signifies good status. For the difference between the two periods, green indicates improvement and purple indicates worsening conditions </em>."
-          )
-        ),
-        mainPanel(
-          highchartOutput(outputId = "map_x0008", height = "500px"),
-          highchartOutput(outputId = "map_x0816", height = "500px"),
-          highchartOutput(outputId = "map_change", height = "500px")
-        )
-      )
-    ),
 
     tabPanel(
       "Changes of governance action between 2016 and 2023",
