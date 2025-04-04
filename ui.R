@@ -50,7 +50,7 @@ ui <- page_navbar(
   id = "navbar",
   #REVIEW file _brand.yml define the theme
   #fmt: skip
-  theme = bs_theme(version = 5, bootswatch = "zephyr") %>%
+  theme = bs_theme(version = 5, bootswatch = "zephyr", fontawesome = TRUE) %>%
     bslib::bs_add_rules(
       rules = "
       /*css*/
@@ -72,31 +72,48 @@ ui <- page_navbar(
       .navbar-nav .nav-link:hover {
         color: white !important;
       }
+     
+      .bslib-gap-spacing {
+          gap: 12px !important; 
+      }
       /*!css*/
       "),
 
-  #TODO Article Info
+  #TODO Home
   nav_panel(
-    title = "Article Info",
+    title = "Home",
     layout_columns(
-      col_widths = c(4, 8),
+      col_widths = c(3, 4, 5),
       # --- LEFT COLUMN ---
       div(
         card(
           div(
             card_header(
-              "Article Information",
+              "ARTICLE INFORMATION",
               class = "bg-primary text-white"
             )
           ),
           card_body(
-            em(
-              "This is an interactive web application to explore the results for the article:"
+            #fmt: skip
+            # em("This is an interactive web application to explore the results for the article:"),
+            div(
+              strong(
+                "Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023",
+                style = "font-size: 17px;"
+              ),
+              a(
+                href = "https://journals.plos.org/globalpublichealth/",
+                target = "_blank",
+                style = "margin-left: 8px;",
+                icon("external-link-alt", lib = "font-awesome")
+              ),
+              a(
+                href = "mailto:peter.sogaard.jorgensen@su.se",
+                style = "margin-left: 8px;",
+                icon("envelope", lib = "font-awesome")
+              )
             ),
-            strong(
-              "Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023",
-              style = "font-size: 18px;"
-            ),
+
             "Peter Søgaard Jørgensen,",
             "Luong Nguyen Thanh,",
             "Ege Pehlivanoğlu,",
@@ -109,14 +126,18 @@ ui <- page_navbar(
             "Guillaume Lhermie,",
             "H. Morgan Scott,",
             "Eili Y. Klein,",
-
-            strong(
-              "Link to the original article:"
+            #fmt: skip
+            HTML("
+             <!--html-->
+             <span style='color:red; font-style:italic;'>Some results may take few seconds to load, please be patient</span> 
+             <!--!html-->"),
+            accordion(
+              id = "guide-accordion",
+              open = FALSE,
+              accordion_panel(
+                title = "Instructions",
+              )
             ),
-            "https://journals.plos.org/globalpublichealth/",
-
-            strong("Corresponding author E-mail:"),
-            "peter.sogaard.jorgensen@su.se (PSJ)",
 
             accordion(
               id = "toc-accordion",
@@ -239,12 +260,11 @@ ui <- page_navbar(
         card(
           div(
             card_header(
-              "Filters",
+              "DPSE INDICATOR EXPLORER",
               class = "bg-primary text-white"
             )
           ),
           card_body(
-            "The maps may take few seconds to load, please be patient",
             pickerInput(
               "dpse",
               "Select DPSE indicators:",
@@ -348,7 +368,7 @@ ui <- page_navbar(
               id = "note-accordion",
               open = FALSE, # Closed by default
               accordion_panel(
-                title = "Notes and Instructions",
+                title = "Notes",
                 HTML(
                   "
               <!--html-->
