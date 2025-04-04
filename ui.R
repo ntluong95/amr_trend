@@ -96,6 +96,9 @@ ui <- page_navbar(
             #fmt: skip
             # em("This is an interactive web application to explore the results for the article:"),
             div(
+              em("This shinyApp provides interactive visualizations of the results from the paper: "),
+              br(),
+              br(),
               strong(
                 "Association between national action and trends in antibiotic resistance: an analysis of 73 countries from 2000 to 2023",
                 style = "font-size: 17px;"
@@ -125,16 +128,26 @@ ui <- page_navbar(
             "Guillaume Lhermie,",
             "H. Morgan Scott,",
             "Eili Y. Klein,",
-            #fmt: skip
-            HTML("
-             <!--html-->
-             <span style='color:red; font-style:italic;'>Some results may take few seconds to load, please be patient</span> 
-             <!--!html-->"),
+
             accordion(
               id = "guide-accordion",
               open = FALSE,
               accordion_panel(
                 title = "Instructions",
+                HTML(
+                  "
+              <!--html-->
+              <span style='color:#C33C2E; font-style:italic;'>Some results may take few seconds to load, please be patient</span>   
+              <br><br>
+              For variable name reference, please check the <strong>S1-4 Table</strong>. 
+              <br><br>
+              For the 2000-2008 and 2008-2016 data, a <span style='color:#C33C2E; font-weight:bold;'>red</span> color indicates worse status, while <span style='color:blue; font-weight:bold;'>blue</span> signifies good status. For the difference between the two periods, <span style='color:green; font-weight:bold;'>green</span> indicates improvement and <span style='color:purple; font-weight:bold;'>purple</span> indicates worsening conditions.
+              <br><br>    
+              <em>Governance action score reported in Tracking AMR Country Self-Assessment Survey (TrACSS) 
+              <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. However, some countries showed <b style='color:#F0C94C'>unchange</b> or even <b style='color:#C33C2E'>decreased</b> in governance action score.</em>
+              <!--!html-->
+              "
+                )
               )
             ),
 
@@ -348,6 +361,7 @@ ui <- page_navbar(
               )
             ),
 
+            tags$hr(),
             #fmt: skip
             pickerInput(
               inputId = "income_gov",
@@ -363,27 +377,6 @@ ui <- page_navbar(
               selected = c("Increase", "Decrease"),
               multiple = TRUE
             ),
-
-            # tags$hr(),
-            accordion(
-              id = "note-accordion",
-              open = FALSE, # Closed by default
-              accordion_panel(
-                title = "Notes",
-                HTML(
-                  "
-              <!--html-->
-              For variable name reference, please check the <strong>S1-4 Table</strong>. 
-              <br><br>
-              For the 2000-2008 and 2008-2016 data, a <span style='color:red; font-weight:bold;'>red</span> color indicates worse status, while <span style='color:blue; font-weight:bold;'>blue</span> signifies good status. For the difference between the two periods, <span style='color:green; font-weight:bold;'>green</span> indicates improvement and <span style='color:purple; font-weight:bold;'>purple</span> indicates worsening conditions.
-              <br><br>    
-              <em>Governance action score reported in Tracking AMR Country Self-Assessment Survey (TrACSS) 
-              <b style='color:#092044'>increased</b> in most countries, which can be interpreted as a sign of progress. However, some countries showed <b style='color:#F0C94C'>unchange</b> or even <b style='color:#C33C2E'>decreased</b> in governance action score.</em>
-              <!--!html-->
-              "
-                )
-              )
-            )
           )
         )
       ),
@@ -433,7 +426,7 @@ ui <- page_navbar(
 
   #TODO Main results,
   navbarMenu(
-    title = "Main results",
+    title = "Annex 1. Main results",
     tabPanel(
       "Association between stated action and DPSE. indicators",
       value = "main-fig2",
@@ -587,7 +580,7 @@ ui <- page_navbar(
 
   #TODO Methodology
   navbarMenu(
-    "Methodology",
+    "Annex 2. Methodology",
     tabPanel(
       "DPSEA indicators description",
       value = "dpsea-description",
