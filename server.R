@@ -139,7 +139,7 @@ server <- function(input, output, session) {
 
   # Main figures ---------------------------------------------------------------------------------------------
 
-  # Figure 2
+  #TODO Figure 2
 
   try.col.vec <- scales::brewer_pal(palette = "Set1")(5)[c(3, 2, 4, 5, 1)]
 
@@ -156,7 +156,7 @@ server <- function(input, output, session) {
     # Initialize list to hold plots
     plots <- list()
 
-    # Check for "Continuous" selection and prepare plot
+    # Check for "Linear Trend" selection and prepare plot
     if ("Linear Trend" %in% input$fig2_outcome && nrow(df_cont) > 0) {
       p1 <- ggplot(df_cont, aes(x = RESPONSE, y = change, colour = DPSIR)) +
         geom_point(aes(shape = income, group = name), alpha = 0.8) +
@@ -204,19 +204,26 @@ server <- function(input, output, session) {
         ) +
         guides(color = "none") +
         theme_bw() +
+        xlab("") +
+        ylab("") +
         theme(legend.position = 'top') +
-        theme(
-          axis.text.x = element_blank(),
-          #       legend.position= c(0.9, 0.1),
-          axis.title.x = element_blank(),
-          strip.text.x = element_blank()
-        ) +
-        labs(y = "Linear Trend (SD=1)", x = "Action index [0-4]")
 
-      plots[[length(plots) + 1]] <- ggplotly(p1) %>% layout(dragmode = "select")
+        # REMOVE the labs() call here to avoid duplicate labels
+        theme(plot.margin = margin(5, 10, 5, 10))
+
+      # Use ggplotly without adding layout axis titles
+      p1_plotly <- ggplotly(p1, tooltip = "all") %>%
+        layout(
+          dragmode = "select",
+          # Add axis titles here only
+          xaxis = list(title = "Action index [0-4]", automargin = TRUE),
+          yaxis = list(title = "Linear Trend (SD=1)", automargin = TRUE)
+        )
+
+      plots[[length(plots) + 1]] <- p1_plotly
     }
 
-    # Check for "Binary" selection and prepare plot
+    # Check for "Categorical Trend" selection and prepare plot
     if ("Categorical Trend" %in% input$fig2_outcome && nrow(df_bin) > 0) {
       p2 <- ggplot(df_bin, aes(x = factor(sign), y = RESPONSE, fill = DPSIR)) +
         geom_boxplot(alpha = 0.8) +
@@ -226,16 +233,13 @@ server <- function(input, output, session) {
           aes(x = 2.5, y = 3.8, label = letter2, fontface = "bold")
         ) +
         facet_wrap(~DPSIR, nrow = 1) +
-        # geom_text(dpsir_bin_plot,
-        #           mapping = aes(x = -Inf, y = -Inf, label = p.label, color = DPSIR),
-        #           hjust = -0.1, vjust = -0.5) +
         geom_text(
           data = dat_text2,
           mapping = aes(x = -Inf, y = -Inf, label = label, color = DPSIR),
           hjust = -0.1,
           vjust = -0.5
         ) +
-        scale_fill_manual(values = try.col.vec[2:5]) + # Using fill for boxplot
+        scale_fill_manual(values = try.col.vec[2:5]) +
         scale_colour_manual(values = try.col.vec[2:5]) +
         scale_y_continuous(
           limits = c(0, 4),
@@ -245,32 +249,50 @@ server <- function(input, output, session) {
           ~ factor(DPSIR, levels = c("DRIVERS", "USE", "RESISTANCE", "DRI"))
         ) +
         guides(color = "none") +
-        xlab("Categorial trend [+/-]") +
-        ylab("Action index [0-4]") +
+        # REMOVE the labs() call here to avoid duplicate labels
         coord_flip() +
-        labs(
-          caption = "Sample Sizes Response Stated Action= 148;  Drivers=73; Use=65; Resistance=32; DRI=25"
-        ) +
         theme_bw() +
-        theme(legend.position = "none", strip.text.x = element_blank())
+        xlab("") +
+        ylab("") +
+        theme(
+          legend.position = "none"
+        )
 
-      plots[[length(plots) + 1]] <- ggplotly(p2) %>% layout(dragmode = "select")
+      # Convert to plotly with explicit layout for axis labels
+      # Note: Due to coord_flip(), x and y are swapped in plotly
+      p2_plotly <- ggplotly(p2, tooltip = "all") %>%
+        layout(
+          dragmode = "select",
+          # Add axis titles here only
+          xaxis = list(title = "Action index [0-4]", automargin = TRUE),
+          yaxis = list(title = "Categorial trend [+/-]", automargin = TRUE)
+        )
+
+      plots[[length(plots) + 1]] <- p2_plotly
     }
 
     # Conditionally display the appropriate plot(s)
     if (length(plots) == 1) {
       return(plots[[1]]) # Return single plot
     } else if (length(plots) > 1) {
-      return(subplot(
-        plots,
-        nrows = length(plots),
-        titleY = TRUE,
-        titleX = TRUE
-      ))
+      # Use subplot with explicit shared axes options
+      return(
+        subplot(
+          plots,
+          nrows = length(plots),
+          titleY = TRUE,
+          titleX = TRUE,
+          margin = 0.1 # Add some margin between plots
+        ) %>%
+          layout(
+            # Global margins
+            margin = list(l = 10, r = 50, b = 80, t = 50)
+          )
+      )
     }
   })
 
-  # Figure 3
+  #TODO Figure 3
   output$fig3_plot <- renderPlotly({
     p <- ggplot() +
       #geom_point(data=all_wide,aes(alpha=tot.alpha,colour=factor(DPSIR,levels=c("USE","RESISTANCE","DRI")))) +
@@ -327,7 +349,7 @@ server <- function(input, output, session) {
     ggplotly(p) %>% layout(dragmode = "select")
   })
 
-  # Figure 4
+  #TODO Figure 4
   output$fig4_plot <- renderPlot({
     x_axis_levels <- c(
       "DPSEA",
@@ -383,7 +405,11 @@ server <- function(input, output, session) {
       theme_light() +
       scale_y_discrete(limit = y_axis_levels, drop = FALSE) +
       scale_x_discrete(limit = x_axis_levels) +
-      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+      theme(
+        text = element_text(size = 14),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)
+      ) +
+
       geom_hline(yintercept = c(11.5, 15.5)) +
       ylab("Variable Names") +
       xlab("Model Names") +
@@ -399,7 +425,7 @@ server <- function(input, output, session) {
     return(p)
   })
 
-  # Figure 5
+  #TODO Figure 5
   output$fig5_plot <- renderPlotly({
     ggplot(
       aniRmmmmALLig.df[
@@ -456,6 +482,7 @@ server <- function(input, output, session) {
 
     # Create the Continuous plot if selected
     if ("Linear Trend" %in% input$fig6_outcome) {
+      # Create the base plot without axis labels
       plot_continuous <- ggplot(data_viz, aes(y = change, x = diff_resp)) +
         geom_point(aes(fill = syndrome, group = name), shape = 21, size = 3) +
         geom_hline(yintercept = 0) +
@@ -470,13 +497,71 @@ server <- function(input, output, session) {
         ) +
         facet_wrap(~DPSIR) +
         theme_bw() +
-        labs(
-          y = "Changes in ABR indicators between 2000-2016",
-          x = "Difference in governance response between 2016-2022"
-        )
-      # geom_text_repel(data = filter(data_viz, syndrome == "D"), aes(label = ISO3), box.padding = 0.5, point.padding = 0.1, size = 4, color = "#D01C8B", max.overlaps = 30)
+        # Removing axis titles since we'll add them in plotly
+        xlab("") +
+        ylab("")
 
-      plot_continuous <- ggplotly(plot_continuous) # Convert ggplot to plotly
+      # For single plot, add annotations directly
+      if (!("Categorical Trend" %in% input$fig6_outcome)) {
+        plot_continuous <- ggplotly(plot_continuous) %>%
+          layout(
+            dragmode = "select",
+            # Add a single global X-axis title
+            annotations = list(
+              list(
+                x = 0.5,
+                y = -0.08,
+                text = "Difference in governance response between 2016-2022",
+                showarrow = FALSE,
+                xref = "paper",
+                yref = "paper",
+                font = list(size = 18)
+              ),
+              list(
+                x = -0.1,
+                y = 0.5,
+                text = "Changes in ABR indicators between 2000-2016",
+                showarrow = FALSE,
+                xref = "paper",
+                yref = "paper",
+                textangle = 270,
+                font = list(size = 18)
+              )
+            ),
+            xaxis = list(
+              tickfont = list(size = 14),
+              automargin = TRUE
+            ),
+            yaxis = list(
+              tickfont = list(size = 14),
+              automargin = TRUE
+            ),
+            legend = list(
+              title = list(text = "Syndrome", font = list(size = 16)),
+              font = list(size = 14)
+            ),
+            margin = list(l = 100, r = 20, b = 160, t = 20)
+          )
+      } else {
+        # For combined plot, keep it simpler without annotations (we'll add them later)
+        plot_continuous <- ggplotly(plot_continuous) %>%
+          layout(
+            dragmode = "select",
+            xaxis = list(
+              tickfont = list(size = 14),
+              automargin = TRUE
+            ),
+            yaxis = list(
+              tickfont = list(size = 14),
+              automargin = TRUE
+            ),
+            legend = list(
+              title = list(text = "Syndrome", font = list(size = 16)),
+              font = list(size = 14)
+            ),
+            margin = list(l = 80, r = 20, b = 80, t = 20)
+          )
+      }
     }
 
     # Create the Category plot if selected
@@ -513,21 +598,55 @@ server <- function(input, output, session) {
           legend.position = "bottom"
         )
 
-      plot_category <- ggplotly(plot_category) # Convert ggplot to plotly
+      plot_category <- ggplotly(plot_category) %>%
+        layout(margin = list(l = 20, r = 20, b = 80, t = 20)) # Add margins to category plot
     }
 
     # Decide which plot(s) to render based on selection
     if (!is.null(plot_continuous) && !is.null(plot_category)) {
-      # If both are selected, display them side by side
-      return(subplot(
-        plot_continuous,
+      # If both are selected, display them side by side with increased spacing
+      combined_plot <- subplot(
         plot_category,
+        plot_continuous,
         nrows = 1,
         shareX = FALSE,
         shareY = FALSE,
-        titleX = TRUE,
-        titleY = TRUE
-      ))
+        titleX = FALSE, # Set to FALSE since we're adding custom annotations
+        titleY = FALSE, # Set to FALSE since we're adding custom annotations
+        widths = c(0.4, 0.6), # Adjust the relative widths of the plots
+        margin = 0.08 # Increase space between subplots
+      )
+
+      # Add global annotations for the combined plot
+      combined_plot <- combined_plot %>%
+        layout(
+          annotations = list(
+            # X-axis label (positioned under the right subplot) - MOVED FURTHER RIGHT
+            list(
+              x = 0.95, # Moved further right (previously was 0.7)
+              y = -0.08,
+              text = "Difference in governance response between 2016-2022",
+              showarrow = FALSE,
+              xref = "paper",
+              yref = "paper",
+              font = list(size = 18)
+            ),
+            # Y-axis label (positioned left of the right subplot)
+            list(
+              x = 0.42, # Positioned to the left of the right plot
+              y = 0.5,
+              text = "Changes in ABR indicators between 2000-2016",
+              showarrow = FALSE,
+              xref = "paper",
+              yref = "paper",
+              textangle = 270,
+              font = list(size = 18)
+            )
+          ),
+          margin = list(l = 80, r = 20, b = 160, t = 20)
+        )
+
+      return(combined_plot)
     } else if (!is.null(plot_continuous)) {
       # If only Continuous is selected
       return(plot_continuous)

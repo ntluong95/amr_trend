@@ -16,7 +16,8 @@ pacman::p_load(
   cowplot,
   gridExtra,
   ggrepel,
-  tidyverse)
+  tidyverse
+)
 
 
 # Set the default theme for ggplot2 plots

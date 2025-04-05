@@ -139,7 +139,7 @@ ui <- page_navbar(
               <!--html-->
               <span style='color:#C33C2E; font-style:italic;'>Some results may take few seconds to load, please be patient</span>   
               <br><br>
-              For variable name reference, please check the <strong>S1-4 Table</strong>. 
+              The results are interactive, which means that you can hover over the data points, or click on the legend, to see more details. For variable name reference, please check the <strong>S1-4 Table</strong>. 
               <br><br>
               For the 2000-2008 and 2008-2016 data, a <span style='color:#C33C2E; font-weight:bold;'>red</span> color indicates worse status, while <span style='color:blue; font-weight:bold;'>blue</span> signifies good status. For the difference between the two periods, <span style='color:green; font-weight:bold;'>green</span> indicates improvement and <span style='color:purple; font-weight:bold;'>purple</span> indicates worsening conditions.
               <br><br>    
@@ -493,7 +493,7 @@ ui <- page_navbar(
               "fig4_outcome",
               "Select outcome type:",
               choices = c("Linear Trend", "Categorical Trend"),
-              selected = "Linear Trend",
+              selected = c("Linear Trend", "Categorical Trend"),
               multiple = TRUE
             )
           ),
@@ -566,13 +566,14 @@ ui <- page_navbar(
           fluidRow(
             # Plain static text description
             tags$p(HTML(
-              "<strong>Figure 6. Classification of country ABR governance syndrome.</strong> <em>(A) categorize country trajectory based on trend in ABR indicators and governmental action. Countries in vicious cycle are displayed with name ISO3 code (see S5 Table). (B) Comparison of country governance syndrome according to DPSE indicators and income level..</em>"
+              "<strong>Figure 6. Classification of country ABR governance syndrome.</strong> <em>(A) categorize country trajectory based on trend in ABR indicators and governmental action. Countries in vicious cycle are displayed with name ISO3 code (see S5 Table). (B) Comparison of country governance syndrome according to DPSE indicators and income level.</em>"
             ))
-          )
+          ),
+          width = 3 # Customize sidebar width (default is 4)
         ),
         mainPanel(
           # plotOutput("adaptive_plot", width = "100%", height = "800px"),
-          plotlyOutput("governance_syndrome1", height = 800, width = "100%"),
+          plotlyOutput("governance_syndrome1", height = 800, width = "100%")
         )
       )
     )
