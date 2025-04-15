@@ -520,7 +520,7 @@ server <- function(input, output, session) {
               list(
                 x = -0.1,
                 y = 0.5,
-                text = "Changes in ABR indicators between 2000-2016",
+                text = "Changes in DPSE indicators between 2000-2016",
                 showarrow = FALSE,
                 xref = "paper",
                 yref = "paper",

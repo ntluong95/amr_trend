@@ -45,6 +45,7 @@ ui <- page_navbar(
       "
     ),
   ),
+  #REVIEW Work with R 4.3.2 or need some packages to make it work
   navbar_options = list(class = "bg-primary", theme = "light"),
   fluid = TRUE,
   id = "navbar",
@@ -566,7 +567,7 @@ ui <- page_navbar(
           fluidRow(
             # Plain static text description
             tags$p(HTML(
-              "<strong>Figure 6. Classification of country ABR governance syndrome.</strong> <em>(A) categorize country trajectory based on trend in ABR indicators and governmental action. Countries in vicious cycle are displayed with name ISO3 code (see S5 Table). (B) Comparison of country governance syndrome according to DPSE indicators and income level.</em>"
+              "<strong>Figure 6. Classification of country ABR governance syndrome.</strong> <em>(A) categorize country trajectory based on trend in DPSE indicators and governmental action. Countries in vicious cycle are displayed with name ISO3 code (see S5 Table). (B) Comparison of country governance syndrome according to DPSE indicators and income level.</em>"
             ))
           ),
           width = 3 # Customize sidebar width (default is 4)

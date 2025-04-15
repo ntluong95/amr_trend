@@ -578,8 +578,7 @@ annotation <- import(here("data", "new", "Main_fig6_bar.rds"), trust = TRUE) %>%
 # >>>    axis.title.x = element_blank(),
 # >>>    panel.grid = element_blank(),
 # >>>    strip.text = element_text(size = 14, face = "bold"),
-# >>>    legend.position = "bottom"
-# >>>  )
+# >>>    legend.position = "bottom")
 
 # >>>p2 <- data_viz %>%
 # >>>  mutate(
@@ -615,19 +614,18 @@ annotation <- import(here("data", "new", "Main_fig6_bar.rds"), trust = TRUE) %>%
 # >>>  theme_bw() +
 # >>>  theme(legend.position = "none") +
 # >>>  labs(
-# >>>    y = "Linear Trend in ABR Indicators Between 2000-2016 ",
+# >>>    y = "Linear Trend in DPSE Indicators Between 2000-2016 ",
 # >>>    x = "Difference in Governance Response Between 2016-2022",
 # >>>    color = "ABR Governance Syndrome"
 # >>>  ) +
 # >>>  geom_text_repel(
-# >>>    data = filter(data_viz, syndrome %in% c("Vicious cycle")), # Filter points with y va>>>lue larger than 1
+# >>>    data = filter(data_viz, syndrome %in% c("Negative cycle")), # Filter points with y value larger than 1
 # >>>    aes(label = ISO3), # Replace "Country" with the actual column name in your data frame
 # >>>    box.padding = 0.5,
 # >>>    point.padding = 0.1,
 # >>>    size = 4,
 # >>>    colour = "#D01C8B",
-# >>>    max.overlaps = getOption("ggrepel.max.overlaps", default = 30)
-# >>>  )
+# >>>    max.overlaps = getOption("ggrepel.max.overlaps", default = 30))
 
 # >>>final <- cowplot::plot_grid(
 # >>>  p2,
@@ -635,16 +633,14 @@ annotation <- import(here("data", "new", "Main_fig6_bar.rds"), trust = TRUE) %>%
 # >>>  rel_widths = c(5, 5),
 # >>>  ncol = 2,
 # >>>  nrow = 1,
-# >>>  labels = c('A', 'B')
-# >>>)
+# >>>  labels = c('A', 'B'))
 
 # >>># save as pdf
 # >>>ggplot2::ggsave(
 # >>>  here("fig6.pdf"),
 # >>>  plot = final,
 # >>>  width = 12,
-# >>>  height = 8
-# >>>)
+# >>>  height = 8)
 
 # >>>#export as eps
 # >>>ggplot2::ggsave(here("fig6.eps"), plot = final, width = 12, height = 8)
