@@ -489,10 +489,10 @@ server <- function(input, output, session) {
         geom_vline(xintercept = 0) +
         scale_fill_manual(
           values = c(
-            "Virtuous cycle" = "#4DAC26",
+            "Positive cycle" = "#4DAC26",
             "Meeting challenge" = "#B8E186",
             "Relaxed response" = "#F1B6DA",
-            "Vicious cycle" = "#D01C8B"
+            "Negative cycle" = "#D01C8B"
           )
         ) +
         facet_wrap(~DPSIR) +
@@ -581,10 +581,10 @@ server <- function(input, output, session) {
         facet_wrap(~income, ncol = 1, scales = "free_y") +
         scale_fill_manual(
           values = c(
-            "Virtuous cycle" = "#4DAC26",
+            "Positive cycle" = "#4DAC26",
             "Meeting challenge" = "#B8E186",
             "Relaxed response" = "#F1B6DA",
-            "Vicious cycle" = "#D01C8B"
+            "Negative cycle" = "#D01C8B"
           )
         ) +
         labs(x = NULL, y = NULL) +

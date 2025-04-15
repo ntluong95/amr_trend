@@ -492,24 +492,162 @@ data_viz <- import(here("data", "new", "Main_fig6_point.rds"), trust = TRUE) %>%
   mutate(
     syndrome = forcats::fct_recode(
       syndrome,
-      "Virtuous cycle" = "A",
+      "Positive cycle" = "A",
       "Meeting challenge" = "B",
       "Relaxed response" = "C",
-      "Vicious cycle" = "D"
+      "Negative cycle" = "D"
     )
   )
 annotation <- import(here("data", "new", "Main_fig6_bar.rds"), trust = TRUE) %>%
   mutate(
     syndrome = forcats::fct_recode(
       syndrome,
-      "Virtuous cycle" = "A",
+      "Positive cycle" = "A",
       "Meeting challenge" = "B",
       "Relaxed response" = "C",
-      "Vicious cycle" = "D"
+      "Negative cycle" = "D"
     ),
     DPSIR = factor(DPSIR, levels = c("DRI", "RESISTANCE", "USE", "DRIVERS"))
   )
 
+
+# >>>p3 <- annotation %>%
+# >>>  mutate(
+# >>>    DPSIR = factor(DPSIR, levels = c("DRI", "RESISTANCE", "USE", "DRIVERS"))
+# >>>  ) %>%
+# >>>  mutate(
+# >>>    syndrome = forcats::fct_recode(
+# >>>      syndrome,
+# >>>      "Negative cycle" = "Vicious cycle",
+# >>>      "Relaxed response" = "Relaxed response",
+# >>>      "Meeting challenge" = "Meeting challenge",
+# >>>      "Positive cycle" = "Virtuous cycle",
+# >>>    ),
+# >>>    syndrome = factor(
+# >>>      syndrome,
+# >>>      levels = c(
+# >>>        "Positive cycle",
+# >>>        "Meeting challenge",
+# >>>        "Relaxed response",
+# >>>        "Negative cycle"
+# >>>      )
+# >>>    ),
+# >>>    DPSIR = factor(DPSIR, levels = c("DRI", "RESISTANCE", "USE", "DRIVERS"))
+# >>>  ) %>%
+# >>>  ggplot(aes(
+# >>>    x = DPSIR,
+# >>>    y = freq, # percent_answers
+# >>>    fill = syndrome
+# >>>  )) +
+# >>>  geom_col() +
+# >>>  geom_text(
+# >>>    aes(label = count), # percent_answers_label # scales::percent(freq/100)
+# >>>    position = position_stack(vjust = 0.5),
+# >>>    color = "black",
+# >>>    size = 3
+# >>>  ) +
+# >>>  # geom_hline(yintercept = 0) +
+# >>>  coord_flip() +
+# >>>  facet_wrap(~income, ncol = 1, nrow = 2) +
+# >>>  scale_x_discrete() +
+# >>>  scale_fill_manual(
+# >>>    breaks = c(
+# >>>      "Negative cycle",
+# >>>      "Relaxed response",
+# >>>      "Meeting challenge",
+# >>>      "Positive cycle"
+# >>>    ),
+# >>>    values = c(
+# >>>      "Positive cycle" = "#4DAC26",
+# >>>      "Meeting challenge" = "#B8E186",
+# >>>      "Relaxed response" = "#F1B6DA",
+# >>>      "Negative cycle" = "#D01C8B"
+# >>>    ),
+# >>>    labels = c(
+# >>>      "Negative cycle",
+# >>>      "Relaxed response",
+# >>>      "Meeting challenge",
+# >>>      "Positive cycle"
+# >>>    )
+# >>>  ) +
+# >>>  labs(x = NULL, fill = NULL) +
+# >>>  theme_minimal() +
+# >>>  guides(fill = guide_legend(nrow = 1, byrow = TRUE)) +
+# >>>  theme(
+# >>>    axis.text.x = element_blank(),
+# >>>    axis.title.x = element_blank(),
+# >>>    panel.grid = element_blank(),
+# >>>    strip.text = element_text(size = 14, face = "bold"),
+# >>>    legend.position = "bottom"
+# >>>  )
+
+# >>>p2 <- data_viz %>%
+# >>>  mutate(
+# >>>    syndrome = forcats::fct_recode(
+# >>>      syndrome,
+# >>>      "Positive cycle" = "Virtuous cycle",
+# >>>      "Meeting challenge" = "Meeting challenge",
+# >>>      "Relaxed response" = "Relaxed response",
+# >>>      "Negative cycle" = "Vicious cycle"
+# >>>    ),
+# >>>    DPSIR = factor(DPSIR, levels = c("DRIVERS", "USE", "RESISTANCE", "DRI"))
+# >>>  ) %>%
+# >>>  ggplot(aes(y = change, x = diff_resp)) +
+# >>>  ggdensity::geom_hdr() +
+# >>>  geom_point(aes(fill = syndrome), shape = 21, size = 3) +
+# >>>  geom_hline(yintercept = 0) +
+# >>>  geom_vline(xintercept = 0) +
+# >>>  scale_fill_manual(
+# >>>    breaks = c(
+# >>>      "Positive cycle",
+# >>>      "Meeting challenge",
+# >>>      "Relaxed response",
+# >>>      "Negative cycle"
+# >>>    ),
+# >>>    values = c(
+# >>>      "Positive cycle" = "#4DAC26",
+# >>>      "Meeting challenge" = "#B8E186",
+# >>>      "Relaxed response" = "#F1B6DA",
+# >>>      "Negative cycle" = "#D01C8B"
+# >>>    )
+# >>>  ) +
+# >>>  facet_wrap(~DPSIR) +
+# >>>  theme_bw() +
+# >>>  theme(legend.position = "none") +
+# >>>  labs(
+# >>>    y = "Linear Trend in ABR Indicators Between 2000-2016 ",
+# >>>    x = "Difference in Governance Response Between 2016-2022",
+# >>>    color = "ABR Governance Syndrome"
+# >>>  ) +
+# >>>  geom_text_repel(
+# >>>    data = filter(data_viz, syndrome %in% c("Vicious cycle")), # Filter points with y va>>>lue larger than 1
+# >>>    aes(label = ISO3), # Replace "Country" with the actual column name in your data frame
+# >>>    box.padding = 0.5,
+# >>>    point.padding = 0.1,
+# >>>    size = 4,
+# >>>    colour = "#D01C8B",
+# >>>    max.overlaps = getOption("ggrepel.max.overlaps", default = 30)
+# >>>  )
+
+# >>>final <- cowplot::plot_grid(
+# >>>  p2,
+# >>>  p3,
+# >>>  rel_widths = c(5, 5),
+# >>>  ncol = 2,
+# >>>  nrow = 1,
+# >>>  labels = c('A', 'B')
+# >>>)
+
+# >>># save as pdf
+# >>>ggplot2::ggsave(
+# >>>  here("fig6.pdf"),
+# >>>  plot = final,
+# >>>  width = 12,
+# >>>  height = 8
+# >>>)
+
+# >>>#export as eps
+# >>>ggplot2::ggsave(here("fig6.eps"), plot = final, width = 12, height = 8)
 
 # Choropleth plots  ----------------------------------------------------------------------------------------
 
