@@ -656,141 +656,141 @@ ggsave(
 
 #REVIEW Use init_resp instead of RESPONSE
 
-my_palette <- c(
-  "#A3A86B", # Olive
-  "#9BB2CE", # Water
-  "#A1D8E0", # Sky
-  "#002F5F" # Stockholm University Blue
-)
+# >>>my_palette <- c(
+# >>>  "#A3A86B", # Olive
+# >>>  "#9BB2CE", # Water
+# >>>  "#A1D8E0", # Sky
+# >>>  "#002F5F" # Stockholm University Blue
+# >>>)
 
-# 1) reshape to long
-press_long <- data_viz %>%
-  select(name, ISO3, init_resp, end_resp) %>%
-  distinct() %>%
-  pivot_longer(
-    cols = c(init_resp, end_resp),
-    names_to = "year",
-    values_to = "value"
-  ) %>%
-  # rename the year‐labels
-  mutate(year = recode(year, init_resp = "2016", end_resp = "2023"))
+# >>># 1) reshape to long
+# >>>press_long <- data_viz %>%
+# >>>  select(name, ISO3, init_resp, end_resp) %>%
+# >>>  distinct() %>%
+# >>>  pivot_longer(
+# >>>    cols = c(init_resp, end_resp),
+# >>>    names_to = "year",
+# >>>    values_to = "value"
+# >>>  ) %>%
+# >>>  # rename the year‐labels
+# >>>  mutate(year = recode(year, init_resp = "2016", end_resp = "2023"))
 
-# 2) compute medians for each year
-medians <- press_long %>%
-  group_by(year) %>%
-  summarize(median = median(value, na.rm = TRUE), .groups = "drop")
+# >>># 2) compute medians for each year
+# >>>medians <- press_long %>%
+# >>>  group_by(year) %>%
+# >>>  summarize(median = median(value, na.rm = TRUE), .groups = "drop")
+# >>>
 
+# >>># 3) plot
+# >>>press_noorder <- press_long %>%
+# >>>  # reorder countries **within each year**
+# >>>  group_by(year) %>%
+# >>>  mutate(name = fct_reorder(name, value)) %>%
+# >>>  ungroup() %>%
+# >>>  ggplot(aes(x = value, y = name, fill = value)) +
+# >>>
+# >>>  # bars
+# >>>  geom_col(show.legend = FALSE) +
+# >>>
+# >>>  # median line per facet
+# >>>  geom_vline(
+# >>>    data = medians,
+# >>>    aes(xintercept = median),
+# >>>    linetype = "dashed",
+# >>>    colour = "#EB7125",
+# >>>    size = 0.8
+# >>>  ) +
+# >>>
+# >>>  # facet by year, allow independent y‐ordering
+# >>>  facet_wrap(~year, scales = "free_y", ncol = 2) +
+# >>>
+# >>>  # smooth gradient through your four colours
+# >>>  scale_fill_gradientn(colours = my_palette) +
+# >>>
+# >>>  # labels
+# >>>  labs(
+# >>>    title = "AMR Action Index by Country",
+# >>>    subtitle = "Data gathered from the TrACSS survey\nDashed line = median",
+# >>>    x = "Action Index",
+# >>>    y = NULL
+# >>>  ) +
+# >>>
+# >>>  # clean, left‐aligned titles
+# >>>  theme_minimal(base_size = 12) +
+# >>>  theme(
+# >>>    plot.title.position = "plot",
+# >>>    plot.subtitle.position = "plot",
+# >>>    plot.title = element_text(hjust = 0, face = "bold", size = 14),
+# >>>    plot.subtitle = element_text(hjust = 0, size = 11),
+# >>>    axis.title.x = element_text(face = "bold"),
+# >>>    axis.text.y = element_text(size = 7),
+# >>>    panel.grid.major.y = element_blank()
+# >>>  ) +
+# >>>
+# >>>  # pad x‐axis so bars & median lines never butt up to the edge
+# >>>  coord_cartesian(xlim = c(0, max(press_long$value) * 1.1))
 
-# 3) plot
-press_noorder <- press_long %>%
-  # reorder countries **within each year**
-  group_by(year) %>%
-  mutate(name = fct_reorder(name, value)) %>%
-  ungroup() %>%
-  ggplot(aes(x = value, y = name, fill = value)) +
+# >>># # save as pdf
+# >>># ggplot2::ggsave(
+# >>>#   here("press.pdf"),
+# >>>#   plot = press,
+# >>>#   width = 10,
+# >>>#   height = 12
+# >>># )
 
-  # bars
-  geom_col(show.legend = FALSE) +
+# >>># now export to SVG:
+# >>>ggsave(
+# >>>  filename = "amr_action_index_init.svg",
+# >>>  plot = press_noorder, # omit this if p is the last plot you printed
+# >>>  width = 10, # in inches
+# >>>  height = 12, # adjust to suit your aspect
+# >>>  device = "svg" # optional when filename ends in .svg
+# >>>)
+# >>>
 
-  # median line per facet
-  geom_vline(
-    data = medians,
-    aes(xintercept = median),
-    linetype = "dashed",
-    colour = "#EB7125",
-    size = 0.8
-  ) +
+# >>># 3. plot, reordering within each year
+# >>>press_order <- press_long %>%
+# >>>  mutate(
+# >>>    # reorder name *within* each facet
+# >>>    name = reorder_within(name, value, year)
+# >>>  ) %>%
+# >>>  ggplot(aes(x = value, y = name, fill = value)) +
+# >>>  geom_col(show.legend = FALSE) +
+# >>>  geom_vline(
+# >>>    data = medians,
+# >>>    aes(xintercept = median),
+# >>>    linetype = "dashed",
+# >>>    colour = "#EB7125",
+# >>>    size = 0.8
+# >>>  ) +
+# >>>  facet_wrap(~year, scales = "free_y", ncol = 2) +
+# >>>  scale_fill_gradientn(colours = my_palette) +
+# >>>  scale_y_reordered() + # <-- fix the y‐axis
+# >>>  labs(
+# >>>    title = "AMR Action Index by Country",
+# >>>    subtitle = "Data gathered from the TrACSS survey\nDashed line = median",
+# >>>    x = "Action Index",
+# >>>    y = NULL
+# >>>  ) +
+# >>>  theme_minimal(base_size = 12) +
+# >>>  theme(
+# >>>    plot.title.position = "plot",
+# >>>    plot.subtitle.position = "plot",
+# >>>    plot.title = element_text(hjust = 0, face = "bold", size = 14),
+# >>>    plot.subtitle = element_text(hjust = 0, size = 11),
+# >>>    axis.title.x = element_text(face = "bold"),
+# >>>    axis.text.y = element_text(size = 7),
+# >>>    panel.grid.major.y = element_blank()
+# >>>  ) +
+# >>>  coord_cartesian(xlim = c(0, max(press_long$value) * 1.1))
 
-  # facet by year, allow independent y‐ordering
-  facet_wrap(~year, scales = "free_y", ncol = 2) +
-
-  # smooth gradient through your four colours
-  scale_fill_gradientn(colours = my_palette) +
-
-  # labels
-  labs(
-    title = "AMR Action Index by Country",
-    subtitle = "Data gathered from the TrACSS survey\nDashed line = median",
-    x = "Action Index",
-    y = NULL
-  ) +
-
-  # clean, left‐aligned titles
-  theme_minimal(base_size = 12) +
-  theme(
-    plot.title.position = "plot",
-    plot.subtitle.position = "plot",
-    plot.title = element_text(hjust = 0, face = "bold", size = 14),
-    plot.subtitle = element_text(hjust = 0, size = 11),
-    axis.title.x = element_text(face = "bold"),
-    axis.text.y = element_text(size = 7),
-    panel.grid.major.y = element_blank()
-  ) +
-
-  # pad x‐axis so bars & median lines never butt up to the edge
-  coord_cartesian(xlim = c(0, max(press_long$value) * 1.1))
-
-# # save as pdf
-# ggplot2::ggsave(
-#   here("press.pdf"),
-#   plot = press,
-#   width = 10,
-#   height = 12
-# )
-
-# now export to SVG:
-ggsave(
-  filename = "amr_action_index_init.svg",
-  plot = press_noorder, # omit this if p is the last plot you printed
-  width = 10, # in inches
-  height = 12, # adjust to suit your aspect
-  device = "svg" # optional when filename ends in .svg
-)
-
-
-# 3. plot, reordering within each year
-press_order <- press_long %>%
-  mutate(
-    # reorder name *within* each facet
-    name = reorder_within(name, value, year)
-  ) %>%
-  ggplot(aes(x = value, y = name, fill = value)) +
-  geom_col(show.legend = FALSE) +
-  geom_vline(
-    data = medians,
-    aes(xintercept = median),
-    linetype = "dashed",
-    colour = "#EB7125",
-    size = 0.8
-  ) +
-  facet_wrap(~year, scales = "free_y", ncol = 2) +
-  scale_fill_gradientn(colours = my_palette) +
-  scale_y_reordered() + # <-- fix the y‐axis
-  labs(
-    title = "AMR Action Index by Country",
-    subtitle = "Data gathered from the TrACSS survey\nDashed line = median",
-    x = "Action Index",
-    y = NULL
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    plot.title.position = "plot",
-    plot.subtitle.position = "plot",
-    plot.title = element_text(hjust = 0, face = "bold", size = 14),
-    plot.subtitle = element_text(hjust = 0, size = 11),
-    axis.title.x = element_text(face = "bold"),
-    axis.text.y = element_text(size = 7),
-    panel.grid.major.y = element_blank()
-  ) +
-  coord_cartesian(xlim = c(0, max(press_long$value) * 1.1))
-
-ggsave(
-  filename = "amr_action_index_order_init.svg",
-  plot = press_order, # omit this if p is the last plot you printed
-  width = 10, # in inches
-  height = 12, # adjust to suit your aspect
-  device = "svg" # optional when filename ends in .svg
-)
+# >>>ggsave(
+# >>>  filename = "amr_action_index_order_init.svg",
+# >>>  plot = press_order, # omit this if p is the last plot you printed
+# >>>  width = 10, # in inches
+# >>>  height = 12, # adjust to suit your aspect
+# >>>  device = "svg" # optional when filename ends in .svg
+# >>>)
 
 # >>>p3 <- annotation %>%
 # >>>  mutate(
